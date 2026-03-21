@@ -14,8 +14,8 @@ export const legal = {
 // Coordonnées GPS pour Schema.org (non éditables)
 // ⚠️ À vérifier sur Google Maps avant mise en production
 export const geo = {
-  lat: 43.2553,    // Estimé pour Laslades (65350) — à vérifier
-  lon: -0.0662,    // Estimé pour Laslades (65350) — à vérifier
+  lat: 43.2284,    // Laslades (65350) — vérifié Google Maps
+  lon: 0.1687,     // Laslades (65350) — vérifié Google Maps
 } as const;
 
 // Configuration du domaine

@@ -3,9 +3,7 @@ import { getContactSection, getSiteInfo } from '@data/content';
 const contact = getContactSection();
 const siteInfo = getSiteInfo();
 
-// ⚠️ Remplacer par votre clé Web3Forms obtenue sur https://web3forms.com
-// La clé doit être dans .env : WEB3FORMS_KEY=votre-cle
-const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? 'VOTRE_CLE_WEB3FORMS';
+const WEB3FORMS_KEY = '4708454a-b5bc-4745-9315-f1d3ac612cde';
 ---
 
 <form
@@ -17,9 +15,9 @@ const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? 'VOTRE_CLE_WEB3FORMS';
 >
   <!-- Web3Forms config -->
   <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
-  <input type="hidden" name="redirect" value="https://dmulti-services.fr/merci" />
+  <input type="hidden" name="redirect" value="https://dmultiservices.fr/merci" />
   <input type="hidden" name="from_name" value="DMulti Services" />
-  <input type="hidden" name="subject" value="Nouveau devis depuis dmulti-services.fr" />
+  <input type="hidden" name="subject" value="Nouveau devis depuis dmultiservices.fr" />
   <input type="hidden" name="replyto" value="$email" />
 
   <!-- Notification à l'agence -->

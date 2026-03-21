@@ -7,11 +7,11 @@
 
 ## Pages principales
 
-- [Accueil](https://dmulti-services.fr/): Présentation générale de l'artisan, services proposés, galerie de réalisations et formulaire de contact
-- [Services](https://dmulti-services.fr/#services): Détail des 7 prestations — menuiserie, cuisine, terrasses, sols, placoplâtre, revêtements muraux, peinture
-- [Réalisations](https://dmulti-services.fr/#realisations): Galerie photos des chantiers réalisés dans les Hautes-Pyrénées et le Gers
-- [À propos](https://dmulti-services.fr/#a-propos): Parcours de David, fondateur de DMulti Services depuis 2009
-- [Contact](https://dmulti-services.fr/#contact): Formulaire de devis gratuit, téléphone et localisation
+- [Accueil](https://dmultiservices.fr/): Présentation générale de l'artisan, services proposés, galerie de réalisations et formulaire de contact
+- [Services](https://dmultiservices.fr/#services): Détail des 7 prestations — menuiserie, cuisine, terrasses, sols, placoplâtre, revêtements muraux, peinture
+- [Réalisations](https://dmultiservices.fr/#realisations): Galerie photos des chantiers réalisés dans les Hautes-Pyrénées et le Gers
+- [À propos](https://dmultiservices.fr/#a-propos): Parcours de David, fondateur de DMulti Services depuis 2009
+- [Contact](https://dmultiservices.fr/#contact): Formulaire de devis gratuit, téléphone et localisation
 
 ## Informations clés
 
