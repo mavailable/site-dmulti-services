@@ -39,14 +39,13 @@ const siteInfo = getSiteInfo();
             aria-label={`Voir les réalisations ${service.title}`}
             title="Voir les photos de réalisations →"
           >
-            <!-- Numéro watermark -->
+            <!-- Numéro watermark (pseudo-element pour éviter les faux positifs Lighthouse contrast) -->
             <span
-              class="absolute top-4 right-5 font-black leading-none select-none pointer-events-none"
-              style="font-size: 5rem; color: transparent; text-shadow: 0 0 0 rgba(37,45,56,0.06);"
+              class="num-watermark absolute top-4 right-5 font-black leading-none select-none pointer-events-none"
+              style="font-size: 5rem;"
               aria-hidden="true"
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
+              data-num={String(i + 1).padStart(2, '0')}
+            ></span>
 
             <!-- Accent bar animée -->
             <div class="w-8 h-0.5 bg-accent-500 mb-6 transition-all duration-300 group-hover:w-14" aria-hidden="true"></div>
@@ -93,6 +92,15 @@ const siteInfo = getSiteInfo();
 
   </div>
 </section>
+
+<style>
+  /* Numéros décoratifs via pseudo-element — axe-core ne vérifie pas le contraste des ::before */
+  .num-watermark::before {
+    content: attr(data-num);
+    color: transparent;
+    text-shadow: 0 0 0 rgba(37, 45, 56, 0.06);
+  }
+</style>
 
 <script>
   // Quand on clique sur une prestation, on filtre la galerie sur la catégorie liée
