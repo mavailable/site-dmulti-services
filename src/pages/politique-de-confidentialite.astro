@@ -1,0 +1,236 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import { getSiteInfo } from '@data/content';
+const siteInfo = getSiteInfo();
+const year = new Date().getFullYear();
+---
+
+<BaseLayout
+  title="Politique de confidentialité — DMulti Services"
+  description="Politique de confidentialité et traitement des données personnelles de DMulti Services."
+  canonicalUrl="https://dmulti-services.fr/politique-de-confidentialite"
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <main id="main-content" class="bg-neutral-50 py-20 pt-32">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <nav class="text-sm text-neutral-500 mb-8" aria-label="Fil d'Ariane">
+        <ol class="flex items-center gap-2 list-none">
+          <li><a href="/" class="hover:text-primary-900 transition-colors">Accueil</a></li>
+          <li aria-hidden="true">›</li>
+          <li class="text-neutral-700" aria-current="page">Politique de confidentialité</li>
+        </ol>
+      </nav>
+
+      <article class="bg-white rounded-2xl shadow-[0_1px_3px_0_rgb(0_0_0_/_0.1)] p-8 sm:p-12">
+        <h1 class="font-heading font-bold text-primary-900 text-3xl mb-2">
+          Politique de confidentialité
+        </h1>
+        <p class="text-neutral-500 text-sm mb-8 pb-6 border-b border-neutral-200">
+          Dernière mise à jour : {year} — Conformément au RGPD (Règlement (UE) 2016/679)
+        </p>
+
+        <div class="text-neutral-700 leading-relaxed space-y-8">
+
+          <!-- 1. Responsable du traitement -->
+          <section aria-labelledby="responsable">
+            <h2 id="responsable" class="font-heading font-bold text-primary-900 text-xl mb-4">1. Responsable du traitement</h2>
+            <address class="not-italic text-sm bg-neutral-50 p-4 rounded-xl border border-neutral-200 space-y-1">
+              <p><strong>{siteInfo.name}</strong> — David</p>
+              <p>{siteInfo.address}, {siteInfo.postalCode} {siteInfo.city}</p>
+              <p>
+                Tél. :{' '}
+                <a href={`tel:${siteInfo.phone}`} class="text-primary-700 hover:underline">{siteInfo.phoneFormatted}</a>
+              </p>
+              {siteInfo.email && (
+                <p>
+                  E-mail :{' '}
+                  <a href={`mailto:${siteInfo.email}`} class="text-primary-700 hover:underline">{siteInfo.email}</a>
+                </p>
+              )}
+            </address>
+          </section>
+
+          <!-- 2. Données collectées -->
+          <section aria-labelledby="donnees">
+            <h2 id="donnees" class="font-heading font-bold text-primary-900 text-xl mb-4">2. Données personnelles collectées</h2>
+            <p>Lors de l'utilisation du formulaire de contact de ce site, nous collectons les données suivantes :</p>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                <span><strong>Nom et prénom</strong> — pour vous identifier et personnaliser la réponse</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                <span><strong>Numéro de téléphone</strong> — pour vous recontacter rapidement</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                <span><strong>Adresse e-mail</strong> (optionnelle) — pour vous envoyer une réponse par écrit si souhaité</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                <span><strong>Message / description du projet</strong> — pour comprendre votre demande</span>
+              </li>
+            </ul>
+            <p class="mt-4 text-sm text-neutral-500 bg-neutral-50 p-3 rounded-lg border border-neutral-200">
+              ℹ️ Aucune autre donnée n'est collectée automatiquement (pas de cookies de tracking, pas d'adresse IP stockée, pas de données de navigation).
+            </p>
+          </section>
+
+          <!-- 3. Finalité et base légale -->
+          <section aria-labelledby="finalite">
+            <h2 id="finalite" class="font-heading font-bold text-primary-900 text-xl mb-4">3. Finalité et base légale du traitement</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border-collapse">
+                <thead>
+                  <tr class="bg-neutral-50">
+                    <th class="text-left px-4 py-3 border border-neutral-200 font-semibold text-primary-900">Finalité</th>
+                    <th class="text-left px-4 py-3 border border-neutral-200 font-semibold text-primary-900">Base légale</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="px-4 py-3 border border-neutral-200">Répondre à votre demande de contact ou de devis</td>
+                    <td class="px-4 py-3 border border-neutral-200">Consentement (soumission volontaire du formulaire)</td>
+                  </tr>
+                  <tr class="bg-neutral-50/50">
+                    <td class="px-4 py-3 border border-neutral-200">Établir et transmettre un devis</td>
+                    <td class="px-4 py-3 border border-neutral-200">Exécution de mesures précontractuelles</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 4. Durée de conservation -->
+          <section aria-labelledby="duree">
+            <h2 id="duree" class="font-heading font-bold text-primary-900 text-xl mb-4">4. Durée de conservation</h2>
+            <p>
+              Vos données personnelles sont conservées pendant une durée maximale de <strong>3 ans</strong> à
+              compter de votre dernière prise de contact, sauf obligation légale de conservation plus longue
+              (ex. : pièces comptables — 10 ans).
+            </p>
+            <p class="mt-3">
+              Au-delà de cette période, vos données sont supprimées ou anonymisées.
+            </p>
+          </section>
+
+          <!-- 5. Destinataires -->
+          <section aria-labelledby="destinataires">
+            <h2 id="destinataires" class="font-heading font-bold text-primary-900 text-xl mb-4">5. Destinataires des données</h2>
+            <p>
+              Vos données sont transmises uniquement à :
+            </p>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                <span><strong>DMulti Services / David</strong> — responsable du traitement, destinataire principal</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                <span>
+                  <strong>Web3Forms</strong> (prestataire d'acheminement des formulaires) —
+                  <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:underline">
+                    politique de confidentialité
+                  </a>
+                </span>
+              </li>
+            </ul>
+            <p class="mt-4">
+              Vos données ne sont <strong>jamais vendues, cédées ni partagées</strong> avec des tiers à des fins commerciales.
+            </p>
+          </section>
+
+          <!-- 6. Vos droits -->
+          <section aria-labelledby="droits">
+            <h2 id="droits" class="font-heading font-bold text-primary-900 text-xl mb-4">6. Vos droits (RGPD)</h2>
+            <p>Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :</p>
+            <ul class="mt-3 space-y-2 text-sm">
+              {[
+                ['Droit d\'accès', 'obtenir une copie des données vous concernant'],
+                ['Droit de rectification', 'corriger des données inexactes ou incomplètes'],
+                ['Droit à l\'effacement', 'demander la suppression de vos données'],
+                ['Droit à la portabilité', 'recevoir vos données dans un format structuré'],
+                ['Droit d\'opposition', 'vous opposer au traitement de vos données'],
+                ['Droit à la limitation', 'limiter le traitement dans certains cas'],
+              ].map(([right, desc]) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-accent-600 mt-1" aria-hidden="true">▸</span>
+                  <span><strong>{right}</strong> — {desc}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="mt-4">
+              Pour exercer vos droits, contactez-nous par téléphone au{' '}
+              <a href={`tel:${siteInfo.phone}`} class="font-medium text-primary-700 hover:underline">{siteInfo.phoneFormatted}</a>
+              {siteInfo.email && (
+                <span>
+                  {' '}ou par e-mail à{' '}
+                  <a href={`mailto:${siteInfo.email}`} class="font-medium text-primary-700 hover:underline">{siteInfo.email}</a>
+                </span>
+              )}.
+            </p>
+            <p class="mt-3 text-sm">
+              Vous pouvez également introduire une réclamation auprès de la{' '}
+              <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:underline">
+                CNIL (Commission Nationale de l'Informatique et des Libertés)
+              </a>.
+            </p>
+          </section>
+
+          <!-- 7. Cookies et analytics -->
+          <section aria-labelledby="cookies">
+            <h2 id="cookies" class="font-heading font-bold text-primary-900 text-xl mb-4">7. Cookies et mesure d'audience</h2>
+            <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+              <p class="font-semibold mb-1">✅ Ce site ne dépose aucun cookie</p>
+              <p>
+                Ce site utilise <strong>Umami Analytics</strong>, un outil de mesure d'audience respectueux de
+                la vie privée. Umami ne dépose aucun cookie, ne collecte pas d'adresse IP complète et ne
+                transmet aucune donnée à des tiers. Aucun consentement n'est requis.
+              </p>
+            </div>
+          </section>
+
+          <!-- 8. Sécurité -->
+          <section aria-labelledby="securite">
+            <h2 id="securite" class="font-heading font-bold text-primary-900 text-xl mb-4">8. Sécurité des données</h2>
+            <p>
+              Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger
+              vos données contre tout accès non autorisé, perte ou divulgation accidentelle. Le site est
+              servi en HTTPS et hébergé sur l'infrastructure sécurisée de Cloudflare.
+            </p>
+          </section>
+
+          <!-- 9. Modifications -->
+          <section aria-labelledby="modifications">
+            <h2 id="modifications" class="font-heading font-bold text-primary-900 text-xl mb-4">9. Modification de cette politique</h2>
+            <p>
+              Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment.
+              La date de dernière mise à jour est indiquée en haut de cette page.
+            </p>
+          </section>
+
+          <p class="text-xs text-neutral-400 pt-4 border-t border-neutral-100">
+            Dernière mise à jour : {year} · DMulti Services, {siteInfo.city} ({siteInfo.postalCode})
+          </p>
+        </div>
+      </article>
+
+      <div class="mt-8 text-center">
+        <a href="/" class="text-neutral-500 hover:text-primary-900 text-sm transition-colors">
+          ← Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>

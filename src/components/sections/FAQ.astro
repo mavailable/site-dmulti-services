@@ -1,0 +1,86 @@
+---
+import { getFaq } from '@data/content';
+import { geo } from '@data/business';
+const faqItems = getFaq();
+---
+
+<!-- Section FAQ — fond primary-900 (sombre), accordéon natif <details>/<summary> -->
+<section
+  id="faq"
+  class="bg-primary-900 py-20 lg:py-28"
+  aria-labelledby="faq-title"
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- En-tête -->
+    <div class="text-center mb-14">
+      <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-3">Questions fréquentes</p>
+      <h2 id="faq-title" class="font-heading font-bold text-white text-3xl sm:text-4xl mb-4">
+        Tout ce que vous voulez savoir
+      </h2>
+      <p class="text-neutral-300 text-lg">
+        Les réponses aux questions les plus posées sur nos services.
+      </p>
+    </div>
+
+    <!-- Accordéon — <details>/<summary> natif, accessible sans JS -->
+    <div class="space-y-3">
+      {faqItems.map((item, i) => (
+        <details
+          class="bg-primary-800 rounded-xl border border-primary-700 overflow-hidden group"
+          open={i === 0}
+        >
+          <summary
+            class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer text-white font-semibold text-base hover:text-accent-400 transition-colors list-none focus-visible:outline-2 focus-visible:outline-accent-500 focus-visible:outline-offset-2"
+          >
+            <span>{item.question}</span>
+            <!-- Indicateur ouverture/fermeture -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="shrink-0 transition-transform duration-200 group-open:rotate-180 text-accent-500"
+              aria-hidden="true"
+            >
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-5 text-neutral-300 text-sm leading-relaxed border-t border-primary-700 pt-4">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Question non listée -->
+    <div class="mt-10 text-center bg-primary-800/50 rounded-xl p-6 border border-primary-700">
+      <p class="text-neutral-300 text-sm mb-4">
+        Votre question n'est pas dans la liste ?
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 bg-accent-500 text-primary-900 font-bold px-6 py-3 rounded-full hover:bg-accent-600 transition-all min-h-[44px] shadow-[0_4px_14px_0_rgb(240_168_0_/_0.35)]"
+      >
+        Posez-la directement à David
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Schema.org FAQPage — JSON-LD pour le SEO -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+})} />

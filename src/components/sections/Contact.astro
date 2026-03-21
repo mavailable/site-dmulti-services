@@ -1,0 +1,78 @@
+---
+import { getContactSection, getSiteInfo } from '@data/content';
+import ContactForm from '@components/forms/ContactForm.astro';
+const contact = getContactSection();
+const siteInfo = getSiteInfo();
+---
+
+<!-- Section Contact — fond neutral-50 (clair), formulaire + coordonnées -->
+<section
+  id="contact"
+  class="bg-neutral-50 py-20 lg:py-28"
+  aria-labelledby="contact-title"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+      <!-- Colonne gauche : info + coordonnées -->
+      <div>
+        <p class="text-secondary-600 font-semibold text-sm uppercase tracking-widest mb-3">Contact</p>
+        <h2 id="contact-title" class="font-heading font-bold text-primary-900 text-3xl sm:text-4xl mb-4">
+          {contact.title}
+        </h2>
+        <p class="text-neutral-600 text-lg mb-8">{contact.subtitle}</p>
+
+        <!-- Coordonnées directes -->
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-accent-500/10 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-accent-700" aria-hidden="true">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-neutral-500 text-xs font-medium uppercase tracking-wide mb-1">Téléphone / WhatsApp</p>
+              <a
+                href={`tel:${siteInfo.phone}`}
+                class="text-primary-900 font-bold text-xl hover:text-secondary-600 transition-colors"
+              >
+                {siteInfo.phoneFormatted}
+              </a>
+              <p class="text-neutral-500 text-sm mt-0.5">Réponse rapide par appel ou message</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-accent-500/10 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-accent-700" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-neutral-500 text-xs font-medium uppercase tracking-wide mb-1">Localisation</p>
+              <p class="text-primary-900 font-semibold">{siteInfo.address}, {siteInfo.postalCode} {siteInfo.city}</p>
+              <p class="text-neutral-500 text-sm mt-0.5">Zone : {siteInfo.zones.slice(0, 4).join(', ')}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badge réassurance -->
+        <div class="mt-8 p-4 bg-white rounded-xl border border-neutral-200 flex items-center gap-3">
+          <span class="text-2xl" aria-hidden="true">✅</span>
+          <p class="text-neutral-700 text-sm leading-relaxed">
+            <strong class="text-primary-900">Devis gratuit et sans engagement</strong><br/>
+            David vous répond dans la journée.
+          </p>
+        </div>
+      </div>
+
+      <!-- Colonne droite : formulaire Web3Forms -->
+      <div>
+        <div class="bg-white rounded-2xl shadow-[0_1px_3px_0_rgb(0_0_0_/_0.1)] p-8">
+          <h3 class="font-heading font-bold text-primary-900 text-xl mb-6">Décrivez votre projet</h3>
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

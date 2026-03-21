@@ -1,0 +1,178 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import Hero from '@components/sections/Hero.astro';
+import SocialProof from '@components/sections/SocialProof.astro';
+import Services from '@components/sections/Services.astro';
+import Gallery from '@components/sections/Gallery.astro';
+import About from '@components/sections/About.astro';
+import Testimonials from '@components/sections/Testimonials.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import Contact from '@components/sections/Contact.astro';
+import WhatsAppButton from '@components/ui/WhatsAppButton.astro';
+import { getSiteInfo } from '@data/content';
+import { domain, geo } from '@data/business';
+
+const siteInfo = getSiteInfo();
+
+const title = 'DMulti Services — Artisan Hautes-Pyrénées (65) et Gers (32)';
+const description = "Artisan multi-services à Laslades (65). Menuiserie, cuisine, terrasses bois, sols, peinture. 30 ans d'expérience. Devis gratuit. Tél. 06 08 46 57 47.";
+
+// Schema.org JSON-LD complet
+const schemaOrg = [
+  {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    "name": siteInfo.name,
+    "image": domain.ogImage,
+    "description": description,
+    "url": domain.url,
+    "telephone": siteInfo.phone,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": siteInfo.address,
+      "addressLocality": siteInfo.city,
+      "postalCode": siteInfo.postalCode,
+      "addressRegion": "Hautes-Pyrénées",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": geo.lat,
+      "longitude": geo.lon
+    },
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Hautes-Pyrénées" },
+      { "@type": "AdministrativeArea", "name": "Gers" }
+    ],
+    "foundingDate": "2009",
+    "priceRange": "€€",
+    "sameAs": [siteInfo.facebook].filter(Boolean)
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": siteInfo.name,
+    "url": domain.url,
+    "description": description,
+    "inLanguage": "fr-FR"
+  }
+];
+---
+
+<BaseLayout title={title} description={description} canonicalUrl={`${domain.url}/`}>
+  <Fragment slot="head">
+    {schemaOrg.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </Fragment>
+
+  <!-- Header — sticky, transparent sur hero -->
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <!--
+    Flux de conversion one-page :
+    1. Hero (impact immédiat + double CTA)
+    2. SocialProof (bande chiffres — réassurance rapide)
+    3. Services (ce qu'on propose)
+    4. Réalisations (preuve par l'image)
+    5. À propos (qui est David)
+    6. Témoignages (preuve sociale)
+    7. FAQ (lever les dernières objections)
+    8. Contact (conversion)
+  -->
+
+  <!-- 1. Hero — bg-primary-900 (sombre) -->
+  <Hero />
+
+  <!-- 2. Chiffres clés — bg-accent-500 + texte primary-900 -->
+  <SocialProof />
+
+  <!-- 3. Services — bg-neutral-50 (clair) -->
+  <Services />
+
+  <!-- 4. Réalisations — bg-primary-900 (sombre) -->
+  <Gallery />
+
+  <!-- 5. À propos — bg-white -->
+  <About />
+
+  <!-- 6. Témoignages — bg-secondary-50 (chaud) -->
+  <Testimonials />
+
+  <!-- 7. FAQ — bg-primary-900 (sombre) -->
+  <FAQ />
+
+  <!-- 8. Contact — bg-neutral-50 (clair) -->
+  <Contact />
+
+  <!-- Footer -->
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+
+  <!-- Bouton WhatsApp flottant -->
+  <WhatsAppButton />
+
+  <!-- Sticky CTA mobile (bas d'écran) -->
+  <div
+    class="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white border-t border-neutral-200 px-4 py-3 flex gap-3 items-center"
+    style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));"
+  >
+    <a
+      href={`tel:${siteInfo.phone}`}
+      class="flex-1 flex items-center justify-center gap-2 bg-primary-900 text-white font-semibold py-3 rounded-full text-sm hover:bg-primary-800 transition-colors min-h-[44px]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+      Appeler
+    </a>
+    <a
+      href="#contact"
+      class="flex-1 flex items-center justify-center gap-2 bg-accent-500 text-primary-900 font-semibold py-3 rounded-full text-sm hover:bg-accent-600 transition-colors min-h-[44px]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+      </svg>
+      Devis gratuit
+    </a>
+  </div>
+</BaseLayout>
+
+<script>
+  // Umami Analytics — tracking des événements de conversion
+  // Les fonctions umami.track() ne s'exécutent que si Umami est chargé (wf-10)
+  function trackEvent(name: string, data?: Record<string, string>) {
+    if (typeof (window as any).umami !== 'undefined') {
+      (window as any).umami.track(name, data);
+    }
+  }
+
+  // Tracker les clics sur les liens tel:
+  document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+    link.addEventListener('click', () => trackEvent('phone-click'));
+  });
+
+  // Tracker les clics sur les liens mailto:
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', () => trackEvent('email-click'));
+  });
+
+  // Tracker les clics sur les CTA principaux (data-track="cta")
+  document.querySelectorAll('[data-track="cta"]').forEach(btn => {
+    btn.addEventListener('click', () => trackEvent('cta-click', { label: (btn as HTMLElement).textContent?.trim() ?? '' }));
+  });
+
+  // Tracker les clics sur le bouton sticky "Devis gratuit"
+  const devisBtn = document.querySelector('a[href="#contact"].flex-1');
+  devisBtn?.addEventListener('click', () => trackEvent('sticky-cta-click'));
+
+  // Tracker les clics sur le lien Facebook dans Gallery
+  document.querySelectorAll('a[href*="facebook.com"]').forEach(link => {
+    link.addEventListener('click', () => trackEvent('facebook-click'));
+  });
+</script>

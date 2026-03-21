@@ -1,0 +1,14 @@
+{
+  "name": "DMulti Services",
+  "short_name": "DMulti",
+  "description": "Artisan multi-services bâtiment dans les Hautes-Pyrénées. Menuiserie, plâtrerie, carrelage, peinture et plus.",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#252d38",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "lang": "fr"
+}

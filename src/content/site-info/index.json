@@ -1,0 +1,14 @@
+{
+  "name": "DMulti Services",
+  "phone": "+33608465747",
+  "phoneFormatted": "06 08 46 57 47",
+  "whatsapp": true,
+  "email": "",
+  "address": "Route de Tarbes",
+  "city": "Laslades",
+  "postalCode": "65350",
+  "region": "Hautes-Pyrénées",
+  "zones": ["Hautes-Pyrénées (65)", "Gers (32)", "Tarbes", "Auch", "Pau", "Saint-Gaudens"],
+  "facebook": "https://www.facebook.com/profile.php?id=100066445609602",
+  "tagline": "Devis gratuit · Réponse rapide · 30 ans d'expérience"
+}

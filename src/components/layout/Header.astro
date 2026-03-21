@@ -1,0 +1,172 @@
+---
+import { getSiteInfo } from '@data/content';
+const siteInfo = getSiteInfo();
+
+const navLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'Réalisations', href: '#realisations' },
+  { label: 'À propos', href: '#a-propos' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  data-header
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-18">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 shrink-0 focus-visible:outline-2 focus-visible:outline-accent-500 rounded" aria-label="DMulti Services — Accueil">
+        <img src="/favicon.svg" alt="" width="32" height="32" aria-hidden="true" class="w-8 h-8" />
+        <span class="font-heading font-bold text-white text-lg leading-tight">
+          DMulti<span class="text-accent-500">.</span>
+        </span>
+      </a>
+
+      <!-- Navigation desktop -->
+      <nav class="hidden lg:flex items-center gap-6" aria-label="Navigation principale">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="text-neutral-200 hover:text-accent-400 font-medium text-sm transition-colors focus-visible:outline-2 focus-visible:outline-accent-500 rounded px-1"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA desktop + tel mobile -->
+      <div class="flex items-center gap-3">
+        <!-- Numéro de téléphone — visible sur mobile -->
+        <a
+          href={`tel:${siteInfo.phone}`}
+          class="lg:hidden flex items-center gap-1.5 text-accent-400 font-semibold text-sm"
+          aria-label={`Appeler le ${siteInfo.phoneFormatted}`}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span class="hidden sm:inline">{siteInfo.phoneFormatted}</span>
+        </a>
+
+        <!-- CTA desktop -->
+        <a
+          href="#contact"
+          class="hidden lg:inline-flex items-center gap-2 bg-accent-500 text-primary-900 font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all duration-200 min-h-[44px]"
+        >
+          Devis gratuit
+        </a>
+
+        <!-- Hamburger mobile -->
+        <button
+          id="menu-toggle"
+          type="button"
+          class="lg:hidden flex flex-col gap-1.5 p-2 rounded focus-visible:outline-2 focus-visible:outline-accent-500"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="block w-5 h-0.5 bg-white transition-all duration-200" aria-hidden="true" id="bar1"></span>
+          <span class="block w-5 h-0.5 bg-white transition-all duration-200" aria-hidden="true" id="bar2"></span>
+          <span class="block w-5 h-0.5 bg-white transition-all duration-200" aria-hidden="true" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu mobile -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden bg-primary-950/98 backdrop-blur-sm border-t border-primary-800"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu de navigation"
+  >
+    <nav class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-1" aria-label="Navigation mobile">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="text-neutral-200 hover:text-accent-400 font-medium py-3 border-b border-primary-800 last:border-0 transition-colors"
+          data-mobile-link
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#contact"
+        class="mt-4 flex items-center justify-center bg-accent-500 text-primary-900 font-semibold py-3 rounded-full hover:bg-accent-600 transition-colors"
+      >
+        Demander un devis gratuit
+      </a>
+      <a
+        href={`tel:${siteInfo.phone}`}
+        class="flex items-center justify-center gap-2 text-neutral-300 py-2 text-sm"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        {siteInfo.phoneFormatted}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Header scroll effect
+  const header = document.querySelector('[data-header]') as HTMLElement;
+  function updateHeader() {
+    if (window.scrollY > 50) {
+      header?.classList.add('bg-primary-950/95', 'backdrop-blur-sm', 'shadow-lg');
+    } else {
+      header?.classList.remove('bg-primary-950/95', 'backdrop-blur-sm', 'shadow-lg');
+    }
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    toggle?.setAttribute('aria-label', 'Fermer le menu');
+    bar1?.classList.add('rotate-45', 'translate-y-2');
+    bar2?.classList.add('opacity-0');
+    bar3?.classList.add('-rotate-45', '-translate-y-2');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Ouvrir le menu');
+    bar1?.classList.remove('rotate-45', 'translate-y-2');
+    bar2?.classList.remove('opacity-0');
+    bar3?.classList.remove('-rotate-45', '-translate-y-2');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+
+  // Close when clicking a mobile link
+  document.querySelectorAll('[data-mobile-link]').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

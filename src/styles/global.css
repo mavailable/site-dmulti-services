@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  /* === PRIMARY — Ardoise === */
+  --color-primary-50: #f6f7f9;
+  --color-primary-100: #eceef2;
+  --color-primary-200: #d5d9e2;
+  --color-primary-300: #b0b9c8;
+  --color-primary-400: #8593a9;
+  --color-primary-500: #637289;
+  --color-primary-600: #4d596f;
+  --color-primary-700: #3d4759;
+  --color-primary-800: #303846;
+  --color-primary-900: #252d38;
+  --color-primary-950: #161c24;
+
+  /* === SECONDARY — Chêne === */
+  --color-secondary-50: #fdf8f1;
+  --color-secondary-100: #faedda;
+  --color-secondary-200: #f4d8b3;
+  --color-secondary-300: #ecbc84;
+  --color-secondary-400: #e29a55;
+  --color-secondary-500: #d47e2c;
+  --color-secondary-600: #bc6520;
+  --color-secondary-700: #9a4f1c;
+  --color-secondary-800: #7c4020;
+  --color-secondary-900: #66361e;
+  --color-secondary-950: #371c0d;
+
+  /* === ACCENT — Or === */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fff4cc;
+  --color-accent-200: #ffe799;
+  --color-accent-300: #ffd566;
+  --color-accent-400: #ffc133;
+  --color-accent-500: #f0a800;
+  --color-accent-600: #cc8800;
+  --color-accent-700: #a36b00;
+  --color-accent-800: #865608;
+  --color-accent-900: #71490b;
+  --color-accent-950: #3f2705;
+
+  /* === NEUTRAL — Pierre === */
+  --color-neutral-50: #f8f9fa;
+  --color-neutral-100: #f1f3f5;
+  --color-neutral-200: #e9ecef;
+  --color-neutral-300: #dee2e6;
+  --color-neutral-400: #ced4da;
+  --color-neutral-500: #adb5bd;
+  --color-neutral-600: #6c757d;
+  --color-neutral-700: #495057;
+  --color-neutral-800: #343a40;
+  --color-neutral-900: #212529;
+  --color-neutral-950: #121416;
+
+  /* === TYPOGRAPHIE === */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* === OMBRES === */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.15);
+  --shadow-cta: 0 4px 14px 0 rgb(240 168 0 / 0.35);
+}
+
+/* === POLICES LOCALES === */
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/outfit-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/outfit-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/outfit-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === STYLES DE BASE === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-neutral-800);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+  ⚠️ RÈGLE CRITIQUE : NE JAMAIS ajouter color: sur les headings ici.
+  Chaque composant gère la couleur via les classes Tailwind (text-white, text-primary-900, etc.)
+  Un color global écraserait ces classes et rendrait les titres sur fond sombre illisibles.
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* Utilitaire : bouton skip-to-content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.focus\:not-sr-only:focus {
+  position: fixed;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Transitions douces globales */
+* {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Amélioration focus visible pour accessibilité */
+:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}

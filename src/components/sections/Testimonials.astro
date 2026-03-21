@@ -1,0 +1,77 @@
+---
+import { getTestimonials } from '@data/content';
+const testimonials = getTestimonials();
+---
+
+<!-- Section Témoignages — fond secondary-50 (chaud, différent des sections précédentes) -->
+<section
+  id="temoignages"
+  class="bg-secondary-50 py-20 lg:py-28"
+  aria-labelledby="testimonials-title"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- En-tête -->
+    <div class="text-center mb-14">
+      <p class="text-secondary-600 font-semibold text-sm uppercase tracking-widest mb-3">Témoignages</p>
+      <h2 id="testimonials-title" class="font-heading font-bold text-primary-900 text-3xl sm:text-4xl mb-4">
+        Ils nous font confiance
+      </h2>
+      <p class="text-neutral-600 text-lg max-w-xl mx-auto">
+        Des particuliers et professionnels des Hautes-Pyrénées et du Gers témoignent de leur expérience.
+      </p>
+    </div>
+
+    <!-- Grille de témoignages -->
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-6 list-none" role="list">
+      {testimonials.map(t => (
+        <li>
+          <article class="bg-white rounded-xl shadow-[0_1px_3px_0_rgb(0_0_0_/_0.1)] hover:shadow-[0_4px_12px_0_rgb(0_0_0_/_0.1)] transition-shadow p-6 h-full flex flex-col">
+            <!-- Étoiles -->
+            <div class="flex gap-0.5 mb-4" aria-label={`Note : ${t.rating} sur 5`}>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class={i < t.rating ? 'text-accent-500' : 'text-neutral-200'}
+                  aria-hidden="true"
+                >
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
+
+            <!-- Citation -->
+            <blockquote class="text-neutral-700 text-sm leading-relaxed italic flex-1 mb-5">
+              <p>«&nbsp;{t.content}&nbsp;»</p>
+            </blockquote>
+
+            <!-- Auteur -->
+            <footer class="flex items-center gap-3 pt-4 border-t border-neutral-100">
+              <div class="w-9 h-9 rounded-full bg-secondary-100 flex items-center justify-center shrink-0">
+                <span class="text-secondary-600 font-bold text-sm" aria-hidden="true">
+                  {t.author.charAt(0)}
+                </span>
+              </div>
+              <div>
+                <cite class="font-semibold text-primary-900 text-sm not-italic">{t.author}</cite>
+                <p class="text-neutral-500 text-xs">{t.service} · {t.location}</p>
+              </div>
+            </footer>
+          </article>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Note globale -->
+    <p class="text-center mt-10 text-neutral-500 text-sm flex items-center justify-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-accent-500" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      100% de clients satisfaits — 5 avis positifs sur Facebook
+    </p>
+  </div>
+</section>

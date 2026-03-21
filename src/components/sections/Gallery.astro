@@ -1,0 +1,83 @@
+---
+// Photos des réalisations
+// TODO: Quand David envoie les photos, les placer dans public/images/realisations/
+// et remplacer les placeholders ci-dessous par de vraies images <img>
+
+const photos = [
+  { src: null, alt: 'Terrasse bois fabriquée et posée par DMulti Services dans les Hautes-Pyrénées', label: 'Terrasse bois' },
+  { src: null, alt: 'Installation d\'une cuisine équipée par David, artisan DMulti Services', label: 'Pose de cuisine' },
+  { src: null, alt: 'Pose de revêtements muraux et tapisserie par DMulti Services', label: 'Revêtements muraux' },
+  { src: null, alt: 'Pose de sol stratifié en lame flottante par DMulti Services', label: 'Sol stratifié' },
+  { src: null, alt: 'Cloison en placoplâtre et isolation réalisée par DMulti Services', label: 'Placoplâtre' },
+  { src: null, alt: 'Peinture intérieure dans une maison des Hautes-Pyrénées', label: 'Peinture intérieure' },
+];
+---
+
+<!-- Section Réalisations — fond primary-900 (sombre), contraste avec section Services (clair) -->
+<section
+  id="realisations"
+  class="bg-primary-900 py-20 lg:py-28"
+  aria-labelledby="gallery-title"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- En-tête -->
+    <div class="text-center mb-14">
+      <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-3">Portfolio</p>
+      <h2 id="gallery-title" class="font-heading font-bold text-white text-3xl sm:text-4xl mb-4">
+        Nos réalisations
+      </h2>
+      <p class="text-neutral-300 text-lg max-w-2xl mx-auto">
+        Chaque chantier est une nouvelle réalisation soignée. Découvrez quelques-uns des travaux réalisés dans les Hautes-Pyrénées et le Gers.
+      </p>
+    </div>
+
+    <!-- Grille photos -->
+    <!-- TODO: Quand les photos sont disponibles, utiliser <img> avec les vrais fichiers -->
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none" role="list" aria-label="Galerie de réalisations">
+      {photos.map((photo, i) => (
+        <li>
+          <!-- Photo placeholder — remplacer par <img> quand photos disponibles -->
+          <figure class="relative overflow-hidden rounded-xl aspect-[4/3] bg-primary-800 group">
+            {photo.src ? (
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading={i < 3 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            ) : (
+              <div class="w-full h-full flex flex-col items-center justify-center gap-2 text-primary-600 bg-primary-800/80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="opacity-30" aria-hidden="true">
+                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                </svg>
+                <span class="text-xs text-primary-500">Photo à venir</span>
+              </div>
+            )}
+            <!-- Label overlay -->
+            <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/80 to-transparent px-4 py-3">
+              <span class="text-white text-sm font-medium">{photo.label}</span>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Lien Facebook -->
+    <div class="text-center mt-10">
+      <a
+        href="https://www.facebook.com/profile.php?id=100066445609602"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 border-2 border-white/30 text-neutral-300 font-medium px-6 py-3 rounded-full hover:border-white hover:text-white transition-colors"
+        aria-label="Voir toutes les réalisations sur Facebook (ouvre dans un nouvel onglet)"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        Voir plus de réalisations sur Facebook
+      </a>
+    </div>
+  </div>
+</section>

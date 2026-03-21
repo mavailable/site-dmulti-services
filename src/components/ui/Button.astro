@@ -1,0 +1,60 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+  'aria-label'?: string;
+  target?: '_blank' | '_self';
+  rel?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  class: extraClass = '',
+  'aria-label': ariaLabel,
+  target,
+  rel,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+const variantClasses = {
+  // ⚠️ RÈGLE CRITIQUE : accent-500 = texte primary-900, JAMAIS blanc
+  primary: 'bg-accent-500 text-primary-900 hover:bg-accent-600 shadow-[0_4px_14px_0_rgb(240_168_0_/_0.35)] hover:shadow-[0_6px_18px_0_rgb(240_168_0_/_0.45)]',
+  secondary: 'bg-primary-800 text-white hover:bg-primary-700',
+  outline: 'border-2 border-accent-500 text-accent-700 hover:bg-accent-50 bg-transparent',
+  ghost: 'border-2 border-white text-white hover:bg-white/10 bg-transparent',
+};
+
+const baseClasses = 'inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500 cursor-pointer min-h-[44px]';
+const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${extraClass}`;
+---
+
+{href ? (
+  <a
+    href={href}
+    class={classes}
+    aria-label={ariaLabel}
+    target={target}
+    rel={target === '_blank' ? (rel ?? 'noopener noreferrer') : rel}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={classes}
+    aria-label={ariaLabel}
+  >
+    <slot />
+  </button>
+)}

@@ -1,0 +1,89 @@
+---
+import { getAbout, getSiteInfo } from '@data/content';
+const about = getAbout();
+const siteInfo = getSiteInfo();
+---
+
+<!-- Section À propos — fond blanc, layout asymétrique (texte + visuel côte à côte) -->
+<section
+  id="a-propos"
+  class="bg-white py-20 lg:py-28"
+  aria-labelledby="about-title"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Colonne visuelle gauche -->
+      <div class="order-2 lg:order-1">
+        <!-- Photo dirigeant -->
+        <!-- TODO: Remplacer par la vraie photo de David (david.jpg) quand disponible -->
+        <div class="relative">
+          <div class="aspect-[4/5] max-w-sm mx-auto lg:mx-0 rounded-2xl overflow-hidden bg-primary-100 flex flex-col items-center justify-center gap-3 text-primary-400">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor" class="opacity-30" aria-hidden="true">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            <span class="text-sm text-primary-400">Photo de David à venir</span>
+          </div>
+
+          <!-- Floating card "expert" -->
+          <div class="absolute -bottom-4 -right-4 lg:right-0 bg-white border border-neutral-200 rounded-xl px-5 py-4 shadow-[0_4px_12px_0_rgb(0_0_0_/_0.1)] max-w-[200px]">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-secondary-600" aria-hidden="true">
+                  <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-heading font-bold text-primary-900 text-sm">Depuis 2009</p>
+                <p class="text-neutral-500 text-xs">30 ans d'expérience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne texte droite -->
+      <article class="order-1 lg:order-2">
+        <p class="text-secondary-600 font-semibold text-sm uppercase tracking-widest mb-3">À propos</p>
+        <h2 id="about-title" class="font-heading font-bold text-primary-900 text-3xl sm:text-4xl mb-6">
+          {about.title}
+        </h2>
+
+        <!-- Texte principal (depuis content.ts) -->
+        <div class="text-neutral-700 leading-relaxed space-y-4">
+          {about.content.split('\n\n').map(paragraph => (
+            paragraph.trim() && <p>{paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}</p>
+          ))}
+        </div>
+
+        <!-- Badges compétences -->
+        <div class="flex flex-wrap gap-2 mt-8">
+          {['CAP Menuiserie', 'Brevet Professionnel', 'Devis gratuit', 'Hautes-Pyrénées', 'Gers'].map(badge => (
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-medium border border-primary-200">
+              {badge}
+            </span>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center gap-2 bg-accent-500 text-primary-900 font-bold px-6 py-3.5 rounded-full hover:bg-accent-600 transition-all min-h-[52px] shadow-[0_4px_14px_0_rgb(240_168_0_/_0.35)]"
+          >
+            Demander mon devis gratuit
+          </a>
+          <a
+            href={`tel:${siteInfo.phone}`}
+            class="inline-flex items-center justify-center gap-2 border-2 border-primary-200 text-primary-700 font-semibold px-6 py-3.5 rounded-full hover:bg-primary-50 transition-colors min-h-[52px]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            {siteInfo.phoneFormatted}
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

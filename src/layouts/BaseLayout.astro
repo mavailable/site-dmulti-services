@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import { getSiteInfo } from '@data/content';
+import { domain } from '@data/business';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage = domain.ogImage,
+  canonicalUrl,
+  noIndex = false,
+} = Astro.props;
+
+const siteInfo = getSiteInfo();
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, domain.url).href;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO de base -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={siteInfo.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#252d38" />
+
+    <!-- Slot pour meta additionnels (Schema.org JSON-LD, etc.) -->
+    <slot name="head" />
+  </head>
+  <body>
+    <!-- Skip-to-content : accessibilité WCAG 2.1 AA — OBLIGATOIRE -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent-500 focus:text-primary-900 focus:px-4 focus:py-2 focus:rounded focus:font-semibold focus:shadow-lg"
+    >
+      Aller au contenu principal
+    </a>
+
+    <!-- Header -->
+    <slot name="header" />
+
+    <!-- Contenu principal -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <slot name="footer" />
+
+    <!-- Umami Analytics — sans cookies, RGPD-exempt -->
+    <!-- ⚠️ Remplacer UMAMI_WEBSITE_ID par l'ID créé lors du déploiement (wf-10) -->
+    <!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="VOTRE_UMAMI_WEBSITE_ID"></script> -->
+  </body>
+</html>

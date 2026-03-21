@@ -1,0 +1,25 @@
+---
+import { getAbout } from '@data/content';
+const about = getAbout();
+---
+
+<!-- Bande chiffres clés — fond accent-500 avec texte primary-900 (WCAG AA: 6.5:1) -->
+<section
+  class="bg-accent-500 py-10"
+  aria-label="Chiffres clés DMulti Services"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ul class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 list-none">
+      {about.stats.map(stat => (
+        <li class="text-center">
+          <div class="font-heading font-extrabold text-2xl sm:text-3xl text-primary-900 leading-none mb-1">
+            {stat.value}
+          </div>
+          <div class="text-primary-800 text-sm font-medium leading-tight">
+            {stat.label}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

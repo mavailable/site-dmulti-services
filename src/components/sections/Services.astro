@@ -1,0 +1,67 @@
+---
+import { getServices, getSiteInfo } from '@data/content';
+const services = getServices();
+const siteInfo = getSiteInfo();
+---
+
+<!-- Section Services — fond neutral-50, pattern grille de cards -->
+<section
+  id="services"
+  class="bg-neutral-50 py-20 lg:py-28"
+  aria-labelledby="services-title"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- En-tête de section -->
+    <div class="text-center mb-14">
+      <p class="text-secondary-600 font-semibold text-sm uppercase tracking-widest mb-3">Nos prestations</p>
+      <h2 id="services-title" class="font-heading font-bold text-primary-900 text-3xl sm:text-4xl mb-4">
+        Tous vos travaux, un seul artisan
+      </h2>
+      <p class="text-neutral-600 text-lg max-w-2xl mx-auto">
+        De la menuiserie à la peinture, David intervient sur l'ensemble de vos chantiers avec le même sérieux et le même savoir-faire depuis 2009.
+      </p>
+    </div>
+
+    <!-- Grille de services -->
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none" role="list">
+      {services.map(service => (
+        <li>
+          <article class="bg-white rounded-xl border border-neutral-200 p-6 shadow-[0_1px_3px_0_rgb(0_0_0_/_0.1)] hover:shadow-[0_4px_12px_0_rgb(0_0_0_/_0.15)] hover:-translate-y-1 transition-all duration-200 h-full">
+            <!-- Icône -->
+            <div class="w-12 h-12 rounded-lg bg-secondary-50 flex items-center justify-center mb-4" aria-hidden="true">
+              <span class="text-2xl" role="img" aria-label="">{service.icon}</span>
+            </div>
+
+            <!-- Titre -->
+            <h3 class="font-heading font-semibold text-primary-900 text-xl mb-2">
+              {service.title}
+            </h3>
+
+            <!-- Description courte -->
+            <p class="text-neutral-700 text-sm leading-relaxed">
+              {service.shortDesc}
+            </p>
+          </article>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA intégré -->
+    <div class="mt-12 bg-primary-900 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <p class="text-white font-heading font-bold text-xl mb-1">Votre projet sur mesure</p>
+        <p class="text-neutral-300 text-sm">{siteInfo.tagline}</p>
+      </div>
+      <a
+        href="#contact"
+        class="shrink-0 inline-flex items-center gap-2 bg-accent-500 text-primary-900 font-bold px-7 py-3.5 rounded-full hover:bg-accent-600 transition-all duration-200 shadow-[0_4px_14px_0_rgb(240_168_0_/_0.35)] min-h-[52px]"
+      >
+        Demander un devis gratuit
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
