@@ -4,5 +4,6 @@
   "description": "Préparation du support et pose de tous types de revêtements de sol : parquet flottant, lame PVC clipsable, linoléum. Rendu impeccable et durabilité garantie pour votre intérieur.",
   "icon": "🏠",
   "image": "/images/realisations/sol.jpg",
-  "order": 4
+  "order": 4,
+  "galleryFilter": "sol"
 }

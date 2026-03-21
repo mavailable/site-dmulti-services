@@ -20,10 +20,13 @@ const navLinks = [
     <div class="flex items-center justify-between h-16 lg:h-18">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 shrink-0 focus-visible:outline-2 focus-visible:outline-accent-500 rounded" aria-label="DMulti Services — Accueil">
-        <img src="/favicon.svg" alt="" width="32" height="32" aria-hidden="true" class="w-8 h-8" />
-        <span class="font-heading font-bold text-white text-lg leading-tight">
-          DMulti<span class="text-accent-500">.</span>
+      <a href="/" class="flex items-center gap-3 shrink-0 focus-visible:outline-2 focus-visible:outline-accent-500 rounded" aria-label="DMulti Services — Accueil">
+        <picture>
+          <source srcset="/images/logo-emblem.webp" type="image/webp" />
+          <img src="/images/logo-emblem-small.png" alt="" width="36" height="36" aria-hidden="true" class="w-9 h-9" loading="eager" decoding="async" />
+        </picture>
+        <span class="font-heading font-bold text-white text-base leading-tight">
+          DMulti <span class="text-accent-400">Services</span>
         </span>
       </a>
 

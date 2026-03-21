@@ -35,7 +35,7 @@ const siteInfo = getSiteInfo();
               </div>
               <div>
                 <p class="font-heading font-bold text-primary-900 text-sm">Depuis 2009</p>
-                <p class="text-neutral-500 text-xs">30 ans d'expérience</p>
+                <p class="text-neutral-700 text-xs">30 ans d'expérience</p>
               </div>
             </div>
           </div>
@@ -58,6 +58,13 @@ const siteInfo = getSiteInfo();
 
         <!-- Badges compétences -->
         <div class="flex flex-wrap gap-2 mt-8">
+          <!-- Badge assurance décennale en avant -->
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+            </svg>
+            Garantie décennale APRIL
+          </span>
           {['CAP Menuiserie', 'Brevet Professionnel', 'Devis gratuit', 'Hautes-Pyrénées', 'Gers'].map(badge => (
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-medium border border-primary-200">
               {badge}

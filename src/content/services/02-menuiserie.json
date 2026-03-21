@@ -4,5 +4,6 @@
   "description": "Pose et remplacement de portes, fenêtres, placards, parcloses et habillages. Avec son CAP et son Brevet Professionnel en menuiserie, David garantit une pose précise et durable pour tous vos ouvrages bois.",
   "icon": "🪵",
   "image": "/images/realisations/menuiserie.jpg",
-  "order": 2
+  "order": 2,
+  "galleryFilter": "menuiserie"
 }

@@ -28,7 +28,7 @@ const testimonials = getTestimonials();
         <li>
           <article class="bg-white rounded-xl shadow-[0_1px_3px_0_rgb(0_0_0_/_0.1)] hover:shadow-[0_4px_12px_0_rgb(0_0_0_/_0.1)] transition-shadow p-6 h-full flex flex-col">
             <!-- Étoiles -->
-            <div class="flex gap-0.5 mb-4" aria-label={`Note : ${t.rating} sur 5`}>
+            <div class="flex gap-0.5 mb-4" role="img" aria-label={`Note : ${t.rating} sur 5`}>
               {Array.from({ length: 5 }).map((_, i) => (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -10,7 +10,7 @@ const react = isKeystatic ? (await import('@astrojs/react')).default : null;
 const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default : null;
 
 export default defineConfig({
-  site: 'https://dmulti-services.fr',
+  site: 'https://dmultiservices.fr',
   output: isKeystatic ? 'hybrid' : 'static',
   adapter: isKeystatic && cloudflare ? cloudflare() : undefined,
   integrations: [

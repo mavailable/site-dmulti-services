@@ -1,19 +1,52 @@
 ---
-// Photos des réalisations
-// TODO: Quand David envoie les photos, les placer dans public/images/realisations/
-// et remplacer les placeholders ci-dessous par de vraies images <img>
+// Galerie réalisations avec filtres par métier
+// Photos dans public/images/realisations/{categorie}/
 
-const photos = [
-  { src: null, alt: 'Terrasse bois fabriquée et posée par DMulti Services dans les Hautes-Pyrénées', label: 'Terrasse bois' },
-  { src: null, alt: 'Installation d\'une cuisine équipée par David, artisan DMulti Services', label: 'Pose de cuisine' },
-  { src: null, alt: 'Pose de revêtements muraux et tapisserie par DMulti Services', label: 'Revêtements muraux' },
-  { src: null, alt: 'Pose de sol stratifié en lame flottante par DMulti Services', label: 'Sol stratifié' },
-  { src: null, alt: 'Cloison en placoplâtre et isolation réalisée par DMulti Services', label: 'Placoplâtre' },
-  { src: null, alt: 'Peinture intérieure dans une maison des Hautes-Pyrénées', label: 'Peinture intérieure' },
+const categories = [
+  { id: 'tous',           label: 'Tout voir',         count: 59 },
+  { id: 'terrasse',       label: 'Terrasses bois',    count: 11 },
+  { id: 'cuisine',        label: 'Cuisines',          count: 15 },
+  { id: 'sol',            label: 'Sols & parquets',   count: 13 },
+  { id: 'salle-de-bain',  label: 'Salles de bain',    count: 6  },
+  { id: 'menuiserie',     label: 'Menuiserie',        count: 5  },
+  { id: 'peinture',       label: 'Peinture',          count: 8  },
 ];
+
+const DEFAULT_CAT = 'terrasse'; // affiché au départ
+const SHOW_ALL_LIMIT = 12;      // max photos pour "Tout voir" avant "Voir plus"
+
+const catAlts: Record<string, string> = {
+  cuisine:          'Pose de cuisine équipée par DMulti Services',
+  terrasse:         'Terrasse bois posée par DMulti Services',
+  sol:              'Revêtement de sol par DMulti Services',
+  'salle-de-bain':  'Rénovation salle de bain par DMulti Services',
+  menuiserie:       'Menuiserie par DMulti Services',
+  peinture:         'Peinture et enduits par DMulti Services',
+  autre:            'Réalisation DMulti Services',
+};
+
+const catCounts: Record<string, number> = {
+  cuisine: 15, terrasse: 11, sol: 13,
+  'salle-de-bain': 6, menuiserie: 5, peinture: 8, autre: 1,
+};
+
+interface Photo { src: string; webp: string; alt: string; cat: string; idx: number }
+const photos: Photo[] = [];
+for (const [cat, count] of Object.entries(catCounts)) {
+  for (let i = 1; i <= count; i++) {
+    const base = `/images/realisations/${cat}/${cat}-${String(i).padStart(2,'0')}`;
+    photos.push({
+      src:  `${base}.jpg`,
+      webp: `${base}.webp`,
+      alt: `${catAlts[cat]} — photo ${i}`,
+      cat,
+      idx: i - 1,
+    });
+  }
+}
 ---
 
-<!-- Section Réalisations — fond primary-900 (sombre), contraste avec section Services (clair) -->
+<!-- Section Réalisations — fond primary-900 (sombre) -->
 <section
   id="realisations"
   class="bg-primary-900 py-20 lg:py-28"
@@ -22,7 +55,7 @@ const photos = [
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- En-tête -->
-    <div class="text-center mb-14">
+    <div class="text-center mb-10">
       <p class="text-accent-400 font-semibold text-sm uppercase tracking-widest mb-3">Portfolio</p>
       <h2 id="gallery-title" class="font-heading font-bold text-white text-3xl sm:text-4xl mb-4">
         Nos réalisations
@@ -32,40 +65,84 @@ const photos = [
       </p>
     </div>
 
+    <!-- Filtres par métier -->
+    <div class="flex flex-wrap gap-2 justify-center mb-10" role="tablist" aria-label="Filtrer par métier">
+      {categories.map((cat) => (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={cat.id === DEFAULT_CAT ? 'true' : 'false'}
+          data-filter={cat.id}
+          class={`gallery-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+            cat.id === DEFAULT_CAT
+              ? 'bg-accent-500 text-primary-900 border-accent-500'
+              : 'bg-transparent text-neutral-300 border-white/20 hover:border-accent-400 hover:text-accent-400'
+          }`}
+        >
+          {cat.label}
+          <span class="ml-1 text-xs opacity-60">({cat.count})</span>
+        </button>
+      ))}
+    </div>
+
     <!-- Grille photos -->
-    <!-- TODO: Quand les photos sont disponibles, utiliser <img> avec les vrais fichiers -->
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none" role="list" aria-label="Galerie de réalisations">
-      {photos.map((photo, i) => (
-        <li>
-          <!-- Photo placeholder — remplacer par <img> quand photos disponibles -->
+    <ul
+      id="gallery-grid"
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 list-none"
+      role="list"
+      aria-label="Galerie de réalisations"
+    >
+      {photos.map((photo, i) => {
+        const isDefault = photo.cat === DEFAULT_CAT;
+        // Toutes les images galerie sont SOUS LE FOLD — toujours lazy
+        // Les images non-default utilisent data-src pour ne même pas être initialisées
+        return (
+        <li
+          data-cat={photo.cat}
+          data-i={photo.idx}
+          class="gallery-item"
+          style={!isDefault ? 'display:none' : ''}
+        >
           <figure class="relative overflow-hidden rounded-xl aspect-[4/3] bg-primary-800 group">
-            {photo.src ? (
+            <picture>
+              {isDefault
+                ? <source type="image/webp" srcset={photo.webp} />
+                : <source type="image/webp" data-srcset={photo.webp} />
+              }
               <img
-                src={photo.src}
+                src={isDefault ? photo.src : undefined}
+                data-src={!isDefault ? photo.src : undefined}
                 alt={photo.alt}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                loading={i < 3 ? 'eager' : 'lazy'}
+                loading="lazy"
                 decoding="async"
+                width="400"
+                height="300"
               />
-            ) : (
-              <div class="w-full h-full flex flex-col items-center justify-center gap-2 text-primary-600 bg-primary-800/80">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="opacity-30" aria-hidden="true">
-                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                </svg>
-                <span class="text-xs text-primary-500">Photo à venir</span>
-              </div>
-            )}
-            <!-- Label overlay -->
-            <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/80 to-transparent px-4 py-3">
-              <span class="text-white text-sm font-medium">{photo.label}</span>
+            </picture>
+            <figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/70 to-transparent px-3 py-2 translate-y-full group-hover:translate-y-0 transition-transform duration-200">
+              <span class="text-white text-xs font-medium capitalize">{photo.cat.replace('-', ' ')}</span>
             </figcaption>
           </figure>
         </li>
-      ))}
+        );
+      })}
     </ul>
 
+    <!-- Bouton "Voir plus" (masqué par défaut, géré en JS) -->
+    <div id="gallery-more-wrap" class="text-center mt-6 hidden">
+      <button
+        id="gallery-more-btn"
+        type="button"
+        class="inline-flex items-center gap-2 border-2 border-accent-500/50 text-accent-400 font-semibold px-6 py-3 rounded-full hover:border-accent-500 hover:text-accent-300 transition-colors text-sm"
+      >
+        Voir plus de photos
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+
     <!-- Lien Facebook -->
-    <div class="text-center mt-10">
+    <div class="text-center mt-8">
       <a
         href="https://www.facebook.com/profile.php?id=100066445609602"
         target="_blank"
@@ -81,3 +158,97 @@ const photos = [
     </div>
   </div>
 </section>
+
+<script>
+  const SHOW_ALL_LIMIT = 12;
+
+  const filterBtns  = document.querySelectorAll<HTMLButtonElement>('.gallery-filter');
+  const items       = document.querySelectorAll<HTMLElement>('.gallery-item');
+  const moreWrap    = document.getElementById('gallery-more-wrap') as HTMLElement;
+  const moreBtn     = document.getElementById('gallery-more-btn') as HTMLButtonElement;
+
+  let currentFilter = 'terrasse';
+  let showAll = false;
+
+  function applyFilter(cat: string, expandAll = false) {
+    currentFilter = cat;
+    showAll = expandAll;
+
+    // Boutons onglets
+    filterBtns.forEach(b => {
+      const active = b.dataset.filter === cat;
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active) {
+        b.classList.add('bg-accent-500', 'text-primary-900', 'border-accent-500');
+        b.classList.remove('bg-transparent', 'text-neutral-300', 'border-white/20');
+      } else {
+        b.classList.remove('bg-accent-500', 'text-primary-900', 'border-accent-500');
+        b.classList.add('bg-transparent', 'text-neutral-300', 'border-white/20');
+      }
+    });
+
+    // Affichage photos + lazy-load: swap data-src → src au moment du reveal
+    let shown = 0;
+    let hidden = 0;
+    items.forEach(item => {
+      const match = cat === 'tous' || item.dataset.cat === cat;
+      if (!match) {
+        item.style.display = 'none';
+        return;
+      }
+      if (cat === 'tous' && !showAll && shown >= SHOW_ALL_LIMIT) {
+        item.style.display = 'none';
+        hidden++;
+      } else {
+        item.style.display = '';
+        shown++;
+        // Swap data-src → src et data-srcset → srcset au moment du reveal
+        const img = item.querySelector<HTMLImageElement>('img[data-src]');
+        if (img?.dataset.src) {
+          // Activer la source WebP
+          const source = item.querySelector<HTMLSourceElement>('source[data-srcset]');
+          if (source?.dataset.srcset) {
+            source.srcset = source.dataset.srcset;
+            delete source.dataset.srcset;
+          }
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+        }
+      }
+    });
+
+    // Bouton "Voir plus" uniquement pour "Tout voir" tronqué
+    if (cat === 'tous' && hidden > 0) {
+      moreWrap.classList.remove('hidden');
+    } else {
+      moreWrap.classList.add('hidden');
+    }
+  }
+
+  // Filtre par clic sur onglet
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyFilter(btn.dataset.filter ?? 'tous', false);
+    });
+  });
+
+  // Voir plus
+  moreBtn.addEventListener('click', () => {
+    applyFilter('tous', true);
+  });
+
+  // Écoute l'event venant de Services.astro (clic sur une prestation)
+  document.addEventListener('gallery:filter', (e: Event) => {
+    const filter = (e as CustomEvent<{ filter: string }>).detail.filter;
+    applyFilter(filter, false);
+  });
+
+  // Vérifie aussi au chargement si un filtre est en attente (depuis un clic Services)
+  document.addEventListener('DOMContentLoaded', () => {
+    const pending = (window as any).__pendingGalleryFilter;
+    if (pending) {
+      applyFilter(pending, false);
+      (window as any).__pendingGalleryFilter = null;
+    }
+  });
+</script>

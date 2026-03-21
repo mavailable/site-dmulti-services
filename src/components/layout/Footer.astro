@@ -10,10 +10,13 @@ const year = new Date().getFullYear();
 
       <!-- Identité -->
       <div>
-        <div class="flex items-center gap-2 mb-4">
-          <img src="/favicon.svg" alt="" width="28" height="28" aria-hidden="true" class="w-7 h-7" />
+        <div class="flex items-center gap-3 mb-4">
+          <picture>
+            <source srcset="/images/logo-emblem.webp" type="image/webp" />
+            <img src="/images/logo-emblem-small.png" alt="" width="40" height="40" aria-hidden="true" class="w-10 h-10" loading="lazy" decoding="async" />
+          </picture>
           <span class="font-heading font-bold text-white text-lg">
-            DMulti<span class="text-accent-500">.</span>
+            DMulti <span class="text-accent-400">Services</span>
           </span>
         </div>
         <p class="text-sm text-neutral-400 leading-relaxed">
@@ -43,26 +46,30 @@ const year = new Date().getFullYear();
         <address class="not-italic text-sm space-y-2 text-neutral-400">
           <p>
             <a
-              href={`tel:${siteInfo.phone}`}
+              href={siteInfo.whatsapp ? `https://wa.me/${siteInfo.phone.replace('+', '')}` : `tel:${siteInfo.phone}`}
+              target={siteInfo.whatsapp ? '_blank' : undefined}
+              rel={siteInfo.whatsapp ? 'noopener noreferrer' : undefined}
               class="hover:text-accent-400 transition-colors flex items-center gap-2"
+              aria-label={siteInfo.whatsapp ? `Contacter David sur WhatsApp` : `Appeler le ${siteInfo.phoneFormatted}`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
               </svg>
               {siteInfo.phoneFormatted}
-              {siteInfo.whatsapp && <span class="text-xs text-secondary-400">(WhatsApp)</span>}
+              {siteInfo.whatsapp && <span class="text-xs text-green-400">(WhatsApp)</span>}
             </a>
           </p>
           {siteInfo.email && (
             <p>
               <a
-                href={`mailto:${siteInfo.email}`}
+                href="#contact"
                 class="hover:text-accent-400 transition-colors flex items-center gap-2"
+                aria-label="Envoyer un message via le formulaire de contact"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
-                {siteInfo.email}
+                Formulaire de contact
               </a>
             </p>
           )}
@@ -100,7 +107,7 @@ const year = new Date().getFullYear();
         <a href="/mentions-legales" class="hover:text-neutral-300 transition-colors">Mentions légales</a>
         <a href="/politique-de-confidentialite" class="hover:text-neutral-300 transition-colors">Confidentialité</a>
         <span class="text-neutral-700">·</span>
-        <span class="text-neutral-700">Site Web Factory</span>
+        <a href="https://marcm.fr/100-sites-artisans/" class="text-neutral-700 hover:text-neutral-400 transition-colors opacity-60">Site réalisé par Marc M. · Spécialiste sites web pour artisans</a>
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@
 export const legal = {
   rcs: '',         // À compléter
   tva: '',         // À compléter (si assujetti)
-  siret: '',       // À compléter — voir brief.md section "À compléter"
+  siret: '511 436 545 00020',
 } as const;
 
 // Coordonnées GPS pour Schema.org (non éditables)
@@ -20,6 +20,6 @@ export const geo = {
 
 // Configuration du domaine
 export const domain = {
-  url: 'https://dmulti-services.fr',
-  ogImage: 'https://dmulti-services.fr/images/og-image.jpg',
+  url: 'https://dmultiservices.fr',
+  ogImage: 'https://dmultiservices.fr/images/og-image.jpg',
 } as const;

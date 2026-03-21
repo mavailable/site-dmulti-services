@@ -4,5 +4,6 @@
   "description": "Conception et installation complète de votre cuisine — équipée, aménagée ou sur mesure. David prend en charge la pose des meubles, le raccordement des équipements et les finitions. Résultat garanti propre et fonctionnel.",
   "icon": "🍳",
   "image": "/images/realisations/cuisine.jpg",
-  "order": 1
+  "order": 1,
+  "galleryFilter": "cuisine"
 }

@@ -4,5 +4,6 @@
   "description": "Conception, fabrication et pose de terrasses en bois sur mesure. Des essences adaptées à votre usage et à votre budget, pour un espace extérieur chaleureux, solide et résistant aux hivers pyrénéens.",
   "icon": "🏡",
   "image": "/images/realisations/terrasse.jpg",
-  "order": 3
+  "order": 3,
+  "galleryFilter": "terrasse"
 }

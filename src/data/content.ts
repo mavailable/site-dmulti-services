@@ -53,6 +53,7 @@ export interface Service {
   icon: string;
   image: string;
   order: number;
+  galleryFilter?: string;
 }
 
 export interface Testimonial {

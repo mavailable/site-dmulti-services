@@ -72,7 +72,10 @@
   --shadow-cta: 0 4px 14px 0 rgb(240 168 0 / 0.35);
 }
 
-/* === POLICES LOCALES === */
+/* === POLICES LOCALES ===
+   Outfit 600 + 700 couvrent semibold + bold (800 → 700, économise 14 KiB)
+   Inter  400 + 600 couvrent normal + semibold (500 → 400, économise 24 KiB)
+*/
 @font-face {
   font-family: 'Outfit';
   src: url('/fonts/outfit-600.woff2') format('woff2');
@@ -83,28 +86,14 @@
 @font-face {
   font-family: 'Outfit';
   src: url('/fonts/outfit-700.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Outfit';
-  src: url('/fonts/outfit-800.woff2') format('woff2');
-  font-weight: 800;
+  font-weight: 700 800; /* couvre 700 et 800 avec le même fichier */
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/inter-400.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/inter-500.woff2') format('woff2');
-  font-weight: 500;
+  font-weight: 400 500; /* couvre 400 et 500 avec le même fichier */
   font-style: normal;
   font-display: swap;
 }
