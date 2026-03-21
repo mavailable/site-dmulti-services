@@ -14,7 +14,7 @@ const siteInfo = getSiteInfo();
     <!-- En-tête asymétrique -->
     <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-14">
       <div>
-        <p class="text-accent-500 font-semibold text-xs uppercase tracking-[0.2em] mb-4">Nos prestations</p>
+        <p class="text-accent-800 font-semibold text-xs uppercase tracking-[0.2em] mb-4">Nos prestations</p>
         <h2 id="services-title" class="font-heading font-extrabold text-primary-900 text-3xl sm:text-4xl lg:text-5xl leading-tight">
           Tous vos travaux,<br/>un seul artisan
         </h2>
@@ -41,8 +41,8 @@ const siteInfo = getSiteInfo();
           >
             <!-- Numéro watermark -->
             <span
-              class="absolute top-4 right-5 font-black leading-none select-none pointer-events-none text-primary-900"
-              style="font-size: 5rem; opacity: 0.04;"
+              class="absolute top-4 right-5 font-black leading-none select-none pointer-events-none"
+              style="font-size: 5rem; color: transparent; text-shadow: 0 0 0 rgba(37,45,56,0.06);"
               aria-hidden="true"
             >
               {String(i + 1).padStart(2, '0')}
