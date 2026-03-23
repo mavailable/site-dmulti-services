@@ -9,7 +9,7 @@ const siteInfo = getSiteInfo();
 <BaseLayout
   title="Merci pour votre message — DMulti Services"
   description="David a bien reçu votre demande et vous recontactera dans les plus brefs délais."
-  canonicalUrl="https://dmulti-services.fr/merci"
+  canonicalUrl="https://dmultiservices.fr/merci"
   noIndex={true}
 >
   <Fragment slot="header">
@@ -73,3 +73,10 @@ const siteInfo = getSiteInfo();
     <Footer />
   </Fragment>
 </BaseLayout>
+
+<script>
+  // Track conversion event on /merci page
+  if (typeof (window as any).umami !== 'undefined') {
+    (window as any).umami.track('conversion', { type: 'form-submit', page: '/merci' });
+  }
+</script>

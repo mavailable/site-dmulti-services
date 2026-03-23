@@ -73,7 +73,7 @@ for (const [cat, count] of Object.entries(catCounts)) {
           role="tab"
           aria-selected={cat.id === DEFAULT_CAT ? 'true' : 'false'}
           data-filter={cat.id}
-          class={`gallery-filter px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+          class={`gallery-filter px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 border min-h-[44px] ${
             cat.id === DEFAULT_CAT
               ? 'bg-accent-500 text-primary-900 border-accent-500'
               : 'bg-transparent text-neutral-300 border-white/20 hover:border-accent-400 hover:text-accent-400'

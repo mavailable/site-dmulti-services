@@ -121,8 +121,10 @@ const navLinks = [
 <script>
   // Header scroll effect
   const header = document.querySelector('[data-header]') as HTMLElement;
+  // Sur les pages secondaires (fond clair), le header doit toujours avoir un fond sombre
+  const isHomepage = window.location.pathname === '/' || window.location.pathname === '';
   function updateHeader() {
-    if (window.scrollY > 50) {
+    if (!isHomepage || window.scrollY > 50) {
       header?.classList.add('bg-primary-950/95', 'backdrop-blur-sm', 'shadow-lg');
     } else {
       header?.classList.remove('bg-primary-950/95', 'backdrop-blur-sm', 'shadow-lg');

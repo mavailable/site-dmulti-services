@@ -63,3 +63,10 @@ const siteInfo = getSiteInfo();
     <Footer />
   </Fragment>
 </BaseLayout>
+
+<script>
+  // Track 404 error in Umami
+  if (typeof (window as any).umami !== 'undefined') {
+    (window as any).umami.track('404_error', { path: window.location.pathname });
+  }
+</script>

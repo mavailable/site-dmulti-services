@@ -3,16 +3,29 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import { getSiteInfo } from '@data/content';
-import { legal } from '@data/business';
+import { legal, domain } from '@data/business';
 const siteInfo = getSiteInfo();
 const year = new Date().getFullYear();
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": domain.url },
+    { "@type": "ListItem", "position": 2, "name": "Mentions légales", "item": `${domain.url}/mentions-legales` }
+  ]
+};
 ---
 
 <BaseLayout
   title="Mentions légales — DMulti Services"
-  description="Mentions légales du site DMulti Services, artisan multi-services à Laslades (65350), Hautes-Pyrénées."
-  canonicalUrl="https://dmulti-services.fr/mentions-legales"
+  description="Mentions légales de DMulti Services, artisan multi-services à Laslades (65350). Éditeur, hébergeur, assurances, propriété intellectuelle et données personnelles."
+  canonicalUrl="https://dmultiservices.fr/mentions-legales"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
   <Fragment slot="header">
     <Header />
   </Fragment>
@@ -39,7 +52,7 @@ const year = new Date().getFullYear();
           <section aria-labelledby="editeur">
             <h2 id="editeur" class="font-heading font-bold text-primary-900 text-xl mb-4">1. Éditeur du site</h2>
             <p>
-              Le présent site internet <strong>dmulti-services.fr</strong> est édité par :
+              Le présent site internet <strong>dmultiservices.fr</strong> est édité par :
             </p>
             <address class="not-italic mt-3 space-y-1 text-sm bg-neutral-50 p-4 rounded-xl border border-neutral-200">
               <p><strong>Nom commercial :</strong> {siteInfo.name}</p>
@@ -130,9 +143,20 @@ const year = new Date().getFullYear();
             </p>
           </section>
 
-          <!-- 6. Responsabilité -->
+          <!-- 6. Crédits -->
+          <section aria-labelledby="credits">
+            <h2 id="credits" class="font-heading font-bold text-primary-900 text-xl mb-4">6. Crédits</h2>
+            <div class="text-sm space-y-2">
+              <p><strong>Conception et réalisation du site :</strong> <a href="https://marcm.fr" target="_blank" rel="noopener noreferrer" class="text-primary-700 hover:underline">Marc M.</a> — Spécialiste sites web pour artisans</p>
+              <p><strong>Photos :</strong> DMulti Services — photos de réalisations et chantiers réels</p>
+              <p><strong>Icônes :</strong> SVG personnalisés</p>
+              <p><strong>Polices :</strong> Outfit, Inter (Google Fonts, licence SIL Open Font License)</p>
+            </div>
+          </section>
+
+          <!-- 7. Responsabilité -->
           <section aria-labelledby="responsabilite">
-            <h2 id="responsabilite" class="font-heading font-bold text-primary-900 text-xl mb-4">6. Limitation de responsabilité</h2>
+            <h2 id="responsabilite" class="font-heading font-bold text-primary-900 text-xl mb-4">7. Limitation de responsabilité</h2>
             <p>
               Les informations contenues sur ce site sont aussi précises que possible et le site est
               régulièrement mis à jour. Cependant, DMulti Services ne peut garantir l'exactitude, la complétude
@@ -143,7 +167,7 @@ const year = new Date().getFullYear();
 
           <!-- 7. Données personnelles -->
           <section aria-labelledby="donnees">
-            <h2 id="donnees" class="font-heading font-bold text-primary-900 text-xl mb-4">7. Données personnelles</h2>
+            <h2 id="donnees" class="font-heading font-bold text-primary-900 text-xl mb-4">8. Données personnelles</h2>
             <p>
               Pour toute information sur la collecte et le traitement des données personnelles, veuillez consulter
               notre{' '}
@@ -155,7 +179,7 @@ const year = new Date().getFullYear();
 
           <!-- 8. Cookies -->
           <section aria-labelledby="cookies">
-            <h2 id="cookies" class="font-heading font-bold text-primary-900 text-xl mb-4">8. Cookies</h2>
+            <h2 id="cookies" class="font-heading font-bold text-primary-900 text-xl mb-4">9. Cookies</h2>
             <p>
               Ce site utilise Umami Analytics, un outil de mesure d'audience qui ne dépose aucun cookie
               sur votre navigateur et ne collecte aucune donnée personnelle identifiable. Aucune bannière
@@ -165,7 +189,7 @@ const year = new Date().getFullYear();
 
           <!-- 9. Droit applicable -->
           <section aria-labelledby="droit">
-            <h2 id="droit" class="font-heading font-bold text-primary-900 text-xl mb-4">9. Droit applicable et juridiction compétente</h2>
+            <h2 id="droit" class="font-heading font-bold text-primary-900 text-xl mb-4">10. Droit applicable et juridiction compétente</h2>
             <p>
               Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux
               compétents sont ceux du ressort du siège social de DMulti Services.
