@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:cms": "KEYSTATIC=true astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/generate-headers.js",
     "build:cms": "KEYSTATIC=true astro build",
     "preview": "astro preview",
     "postinstall": "node scripts/download-fonts.js"
