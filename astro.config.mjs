@@ -15,7 +15,7 @@ export default defineConfig({
   adapter: isKeystatic && cloudflare ? cloudflare() : undefined,
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/api/') && !page.includes('/merci'),
+      filter: (page) => !page.includes('/api/') && !page.includes('/merci') && !page.includes('/aide'),
       i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR' } },
     }),
     ...(isKeystatic && react ? [react()] : []),

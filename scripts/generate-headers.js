@@ -53,6 +53,11 @@ function generateHeaders(scriptHashes) {
   X-XSS-Protection: 0
   Content-Security-Policy: default-src 'self'; script-src 'self' ${hashList} https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://cloud.umami.is https://api.web3forms.com; frame-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+/aide-70ee8bd4/*
+  ! Content-Security-Policy
+  ! X-Frame-Options
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev; frame-src https://cloud.umami.is; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 `;
 }
 
