@@ -88,6 +88,7 @@ export default config({
         icon: fields.text({ label: 'Icône (emoji ou nom)', description: 'Ex: 🪵 ou wrench' }),
         image: fields.text({ label: 'Image (chemin)', description: '/images/services/cuisine.jpg' }),
         order: fields.integer({ label: 'Ordre d\'affichage', defaultValue: 0 }),
+        galleryFilter: fields.text({ label: 'Filtre galerie (catégorie photo)' }),
       },
     }),
 
