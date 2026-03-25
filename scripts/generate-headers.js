@@ -51,7 +51,7 @@ function generateHeaders(scriptHashes) {
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   X-XSS-Protection: 0
-  Content-Security-Policy: default-src 'self'; script-src 'self' ${hashList} https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://cloud.umami.is https://api.web3forms.com; frame-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' ${hashList}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
 /aide-70ee8bd4/*
