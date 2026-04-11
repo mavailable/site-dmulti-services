@@ -13,63 +13,35 @@ import FAQ from '@components/sections/FAQ.astro';
 import Contact from '@components/sections/Contact.astro';
 import WhatsAppButton from '@components/ui/WhatsAppButton.astro';
 import { getSiteInfo } from '@data/content';
-import { domain, geo } from '@data/business';
+import { domain } from '@data/business';
+import { schemaData } from '@data/business';
+import {
+  getGeneralContractorSchema,
+  getWebsiteSchema,
+  getBreadcrumbSchema,
+  getSpeakableSchema,
+} from '@data/schemas';
 
 const siteInfo = getSiteInfo();
 
-const title = 'DMulti Services — Artisan Hautes-Pyrénées (65) et Gers (32)';
-const description = "Artisan multi-services à Laslades (65). Menuiserie, cuisine, terrasses bois, sols, peinture. 30 ans d'expérience. Devis gratuit. Tél. 06 08 46 57 47.";
+const title = schemaData.defaultTitle;
+const description = schemaData.defaultDescription;
 
-// Schema.org JSON-LD complet
-const schemaOrg = [
-  {
-    "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    "name": siteInfo.name,
-    "image": domain.ogImage,
-    "logo": `${domain.url}/images/logo.webp`,
-    "description": description,
-    "url": domain.url,
-    "telephone": siteInfo.phone,
-    "email": siteInfo.email,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": siteInfo.address,
-      "addressLocality": siteInfo.city,
-      "postalCode": siteInfo.postalCode,
-      "addressRegion": "Hautes-Pyrénées",
-      "addressCountry": "FR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": geo.lat,
-      "longitude": geo.lon
-    },
-    "areaServed": [
-      { "@type": "AdministrativeArea", "name": "Hautes-Pyrénées" },
-      { "@type": "AdministrativeArea", "name": "Gers" }
-    ],
-    "foundingDate": "2009",
-    "priceRange": "€€",
-    "taxID": "511 436 545 00020",
-    "sameAs": [siteInfo.facebook].filter(Boolean)
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": siteInfo.name,
-    "url": domain.url,
-    "description": description,
-    "inLanguage": "fr-FR"
-  }
-];
+// Schemas centralises — doctrine C1 wf-00-cms §7
+const generalContractorSchema = getGeneralContractorSchema();
+const websiteSchema = getWebsiteSchema();
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Accueil', url: domain.url },
+]);
+const speakableSchema = getSpeakableSchema(title, description, domain.url);
 ---
 
 <BaseLayout title={title} description={description} canonicalUrl={`${domain.url}/`}>
   <Fragment slot="head">
-    {schemaOrg.map(schema => (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    ))}
+    <script type="application/ld+json" set:html={JSON.stringify(generalContractorSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(speakableSchema)} />
   </Fragment>
 
   <!-- Header — sticky, transparent sur hero -->

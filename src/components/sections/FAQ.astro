@@ -1,7 +1,10 @@
 ---
 import { getFaq } from '@data/content';
-import { geo } from '@data/business';
+import { getFAQPageSchema } from '@data/schemas';
 const faqItems = getFaq();
+
+// Schema.org FAQPage centralise — doctrine C1
+const faqSchema = getFAQPageSchema();
 ---
 
 <!-- Section FAQ — fond primary-900 (sombre), accordéon natif <details>/<summary> -->
@@ -71,16 +74,5 @@ const faqItems = getFaq();
   </div>
 </section>
 
-<!-- Schema.org FAQPage — JSON-LD pour le SEO -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map(item => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.answer
-    }
-  }))
-})} />
+<!-- Schema.org FAQPage — JSON-LD pour le SEO (doctrine C1, helper centralisé) -->
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
