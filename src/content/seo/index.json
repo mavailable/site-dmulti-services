@@ -1,0 +1,39 @@
+{
+  "global": {
+    "siteName": "DMulti Services",
+    "separator": "\u2014",
+    "defaultOgImage": "/images/og-image.jpg"
+  },
+  "pages": {
+    "/": {
+      "title": "Artisan multi-services Hautes-Pyrenees (65) et Gers (32)",
+      "description": "Artisan multi-services a Laslades (65). Menuiserie, cuisine, terrasses bois, sols, peinture. 30 ans d'experience. Devis gratuit. Tel. 06 08 46 57 47.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/mentions-legales": {
+      "title": "Mentions legales",
+      "description": "Mentions legales du site DMulti Services.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/politique-de-confidentialite": {
+      "title": "Politique de confidentialite",
+      "description": "Politique de confidentialite du site DMulti Services.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/merci": {
+      "title": "Message envoye",
+      "description": "Votre message a bien ete envoye. David vous repondra rapidement.",
+      "ogImage": "",
+      "noindex": true
+    },
+    "/404": {
+      "title": "Page introuvable",
+      "description": "La page que vous cherchez n'existe pas ou a ete deplacee.",
+      "ogImage": "",
+      "noindex": true
+    }
+  }
+}

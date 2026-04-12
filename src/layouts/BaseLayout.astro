@@ -89,5 +89,15 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, domain.url).href;
 
     <!-- Umami Analytics — sans cookies, RGPD-exempt -->
     <script is:inline defer src="/a/s" data-website-id="383601ed-cc6a-4dd2-94db-b8e9bbe2b7a3" data-host-url="/a/e"></script>
+
+    <!-- CMS maison — edition visuelle inline (charge uniquement si connecte) -->
+    <script is:inline>
+      if (document.cookie.includes('cms_session=')) {
+        const s = document.createElement('script');
+        s.src = '/cms-edit.js';
+        s.defer = true;
+        document.body.appendChild(s);
+      }
+    </script>
   </body>
 </html>

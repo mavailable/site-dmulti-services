@@ -1,0 +1,14 @@
+{
+  "colors": {
+    "primary": "#252d38",
+    "accent": "#f0a800",
+    "dark": "#161c24"
+  },
+  "pageNames": {
+    "/": "Accueil",
+    "/mentions-legales": "Mentions legales",
+    "/politique-de-confidentialite": "Politique de confidentialite",
+    "/merci": "Message envoye",
+    "/404": "Page introuvable"
+  }
+}
