@@ -92,7 +92,7 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, domain.url).href;
 
     <!-- CMS maison — edition visuelle inline (charge uniquement si connecte) -->
     <script is:inline>
-      if (document.cookie.includes('cms_session=')) {
+      if (document.cookie.includes('cms_logged_in')) {
         const s = document.createElement('script');
         s.src = '/cms-edit.js';
         s.defer = true;
