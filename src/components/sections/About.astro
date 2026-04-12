@@ -21,6 +21,7 @@ const siteInfo = getSiteInfo();
             <img
               src="/images/david-portrait.webp"
               alt="David, artisan menuisier multi-services dans les Hautes-Pyrénées"
+              data-cms-field="about.founderImage" data-cms-type="image"
               width="600"
               height="800"
               loading="lazy"
@@ -49,12 +50,12 @@ const siteInfo = getSiteInfo();
       <!-- Colonne texte droite -->
       <article class="order-1 lg:order-2">
         <p class="text-secondary-700 font-semibold text-sm uppercase tracking-widest mb-3">À propos</p>
-        <h2 id="about-title" class="font-heading font-bold text-primary-900 text-3xl sm:text-4xl mb-6">
+        <h2 id="about-title" class="font-heading font-bold text-primary-900 text-3xl sm:text-4xl mb-6" data-cms-field="about.title" data-cms-type="text">
           {about.title}
         </h2>
 
         <!-- Texte principal (depuis content.ts) -->
-        <div class="text-neutral-700 leading-relaxed space-y-4">
+        <div class="text-neutral-700 leading-relaxed space-y-4" data-cms-field="about.content" data-cms-type="richtext">
           {about.content.split('\n\n').map(paragraph => (
             paragraph.trim() && <p>{paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}</p>
           ))}
