@@ -46,7 +46,7 @@ const testimonials = getTestimonials();
             </div>
 
             <!-- Citation -->
-            <blockquote class="text-neutral-700 text-sm leading-relaxed italic flex-1 mb-5">
+            <blockquote class="text-neutral-700 text-sm leading-relaxed italic flex-1 mb-5" data-cms-field={`testimonials.${t._slug}.content`} data-cms-type="text">
               <p>«&nbsp;{t.content}&nbsp;»</p>
             </blockquote>
 
@@ -58,8 +58,8 @@ const testimonials = getTestimonials();
                 </span>
               </div>
               <div>
-                <cite class="font-semibold text-primary-900 text-sm not-italic">{t.author}</cite>
-                <p class="text-neutral-700 text-xs">{t.service} · {t.location}</p>
+                <cite class="font-semibold text-primary-900 text-sm not-italic" data-cms-field={`testimonials.${t._slug}.author`} data-cms-type="text">{t.author}</cite>
+                <p class="text-neutral-700 text-xs"><span data-cms-field={`testimonials.${t._slug}.service`} data-cms-type="text">{t.service}</span> · <span data-cms-field={`testimonials.${t._slug}.location`} data-cms-type="text">{t.location}</span></p>
               </div>
             </footer>
           </article>

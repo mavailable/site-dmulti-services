@@ -37,7 +37,7 @@ const faqSchema = getFAQPageSchema();
           <summary
             class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer text-white font-semibold text-base hover:text-accent-400 transition-colors list-none focus-visible:outline-2 focus-visible:outline-accent-500 focus-visible:outline-offset-2"
           >
-            <span>{item.question}</span>
+            <span data-cms-field={`faq.${item._slug}.question`} data-cms-type="text">{item.question}</span>
             <!-- Indicateur ouverture/fermeture -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const faqSchema = getFAQPageSchema();
             </svg>
           </summary>
           <div class="px-6 pb-5 text-neutral-300 text-sm leading-relaxed border-t border-primary-700 pt-4">
-            <p>{item.answer}</p>
+            <p data-cms-field={`faq.${item._slug}.answer`} data-cms-type="text">{item.answer}</p>
           </div>
         </details>
       ))}

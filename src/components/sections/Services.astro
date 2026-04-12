@@ -55,12 +55,12 @@ const siteInfo = getSiteInfo();
             <span class="text-3xl mb-5 block" aria-hidden="true">{service.icon}</span>
 
             <!-- Titre -->
-            <h3 class="font-heading font-bold text-primary-900 text-lg mb-2 leading-snug">
+            <h3 class="font-heading font-bold text-primary-900 text-lg mb-2 leading-snug" data-cms-field={`services.${service._slug}.title`} data-cms-type="text">
               {service.title}
             </h3>
 
             <!-- Description -->
-            <p class="text-neutral-600 text-sm leading-relaxed mt-auto pt-2">
+            <p class="text-neutral-600 text-sm leading-relaxed mt-auto pt-2" data-cms-field={`services.${service._slug}.shortDesc`} data-cms-type="text">
               {service.shortDesc}
             </p>
 
