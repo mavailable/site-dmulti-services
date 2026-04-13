@@ -93,6 +93,7 @@ const cmsConfig: CmsConfig = {
         submitButtonText: { type: 'text', label: 'Texte du bouton envoyer' },
         successMessage: { type: 'text', label: 'Message de confirmation', multiline: true },
         rgpdText: { type: 'text', label: 'Texte RGPD', multiline: true },
+        web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Creez votre cle gratuite sur web3forms.com puis collez-la ici pour recevoir vos formulaires directement.' },
       },
     },
   },
