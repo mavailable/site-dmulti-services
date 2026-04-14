@@ -15,6 +15,23 @@ const cmsConfig: CmsConfig = {
   branch: 'dev',
   siteName: 'DMulti Services',
 
+  site: {
+    ownerName: 'David Merly',
+    phone: '+33608465747',
+    phoneDisplay: '06 08 46 57 47',
+    email: 'dmms32@outlook.com',
+    siteUrl: 'https://dmultiservices.fr',
+    previewUrl: 'https://site-dmulti-services.pages.dev',
+    clientType: 'entreprise-locale',
+    tagline: 'Multiservices dans les Hautes-Pyrenees et le Gers',
+    calUrl: 'https://cal.com/david-merly-p1fdkh/30min',
+    contactMarc: {
+      phone: '06 88 76 66 48',
+      whatsapp: '33688766648',
+      email: 'marc@muller.im',
+    },
+  },
+
   singletons: {
     'site-info': {
       label: 'Informations generales',
