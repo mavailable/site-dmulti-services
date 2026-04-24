@@ -59,6 +59,11 @@ function generateHeaders(scriptHashes) {
   ! X-Frame-Options
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://umami-proxy.marc-f10.workers.dev; frame-src https://cloud.umami.is; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 
+/admin/*
+  ! Content-Security-Policy
+  ! X-Frame-Options
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://umami-proxy.marc-f10.workers.dev; frame-src https://cloud.umami.is; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+
 /api/cms/*
   ! Content-Security-Policy
   Access-Control-Allow-Origin: *
