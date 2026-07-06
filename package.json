@@ -4,19 +4,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "preinstall": "node ./scripts/setup-private-dep.mjs",
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-headers.js",
+    "build": "cms-engine-doctor && cms-engine-sync-assets && cms-engine-scaffold && astro build && node scripts/generate-headers.js",
     "preview": "astro preview",
     "postinstall": "node scripts/download-fonts.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.3.0",
-    "@tiptap/core": "^2.0.0",
-    "@tiptap/extension-link": "^2.0.0",
-    "@tiptap/pm": "^2.0.0",
-    "@tiptap/react": "^2.0.0",
-    "@tiptap/starter-kit": "^2.0.0",
+    "@marc/cms-engine": "github:mavailable/cms-engine#v0.10.0",
     "astro": "^5.7.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
