@@ -1,4 +1,4 @@
-import type { CmsConfig } from './cms.types';
+import type { CmsConfig } from '@marc/cms-engine/types';
 
 // ============================================================
 // Configuration CMS — DMulti Services
@@ -14,6 +14,10 @@ const cmsConfig: CmsConfig = {
   repo: 'mavailable/site-dmulti-services',
   branch: 'dev',
   siteName: 'DMulti Services',
+
+  // Modules du moteur montés dans /admin (AdminIsland les importe via le scaffold).
+  // Aucun module actif sur ce site (cœur seul — vérité du cms.config).
+  modules: [],
 
   site: {
     ownerName: 'David Merly',
