@@ -10,3 +10,11 @@ node_modules/
 .DS_Store
 .vercel/
 .wrangler/
+
+# CMS engine : éditeur inline synchronisé du package au build (cms-engine-sync-assets)
+public/cms-edit.js
+
+# Shims functions générés au build par cms-engine-scaffold (moteur dans node_modules, PI)
+functions/api/cms/
+functions/api/publish.js
+functions/img/
