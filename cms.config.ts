@@ -14,6 +14,33 @@ const cmsConfig: CmsConfig = {
   repo: 'mavailable/site-dmulti-services',
   branch: 'dev',
   siteName: 'DMulti Services',
+  // Pas de siteLogo : logo.webp est un lockup vertical (emblème doré + wordmark
+  // empilés) en or métallique sur transparent — illisible/écrasé à 28px de haut et
+  // faible contraste sur fond clair. Fallback texte siteName (règle wf-00-cms §5).
+
+  // Branding admin — variante CLAIRE dérivée du theme actif (global.css : accent
+  // Or, secondary Chêne, primary Ardoise ; fonts Outfit/Inter). Palette chaude
+  // bois+or. Gate admin-theme-validate.py OK. Contrastes vérifiés WCAG :
+  //   accent 5.93 / accentDeep sur accentSoft 7.43 / ink 15.74 / inkSoft 9.95 /
+  //   muted 8.04 / muted2 5.98 sur blanc (muted3 4.18 WARN).
+  adminTheme: {
+    accent: '#8a5a00',        // or profond (boutons, liens, onglet actif)
+    accentDeep: '#6e4700',    // or foncé (texte sur pastille accentSoft, badges)
+    accentSoft: '#fff4cc',    // or très pâle (pastilles, boutons secondaires)
+    accentBorder: '#ffe799',  // or clair (bordures accent)
+    ink: '#371c0d',           // brun chêne encre (titres)
+    inkSoft: '#66361e',       // brun chêne (labels)
+    muted: '#7c4020',         // brun chêne tertiaire (paragraphes)
+    muted2: '#9a4f1c',        // brun chêne clair (méta, contacts)
+    muted3: '#bc6520',        // brun-orangé (hints, dates)
+    line: '#f4d8b3',          // ligne chêne clair (bordures de cartes)
+    lineSoft: '#faedda',      // séparateur crème chêne
+    borderInput: '#ecbc84',   // bordure chêne des champs
+    surface: '#ffffff',       // fond des cartes
+    bg: '#fdf8f1',            // crème chêne (fond de l'espace)
+    fontBody: "'Inter', system-ui, sans-serif",     // même corps que le site
+    fontHeading: "'Outfit', system-ui, sans-serif", // même titrage que le site
+  },
 
   // Modules du moteur montés dans /admin (AdminIsland les importe via le scaffold).
   // Aucun module actif sur ce site (cœur seul — vérité du cms.config).
