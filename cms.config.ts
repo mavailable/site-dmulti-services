@@ -70,6 +70,7 @@ const cmsConfig: CmsConfig = {
       label: 'Informations generales',
       description: 'Nom commercial, telephone, email, adresse, zones, reseaux sociaux',
       path: 'src/content/site-info/index.json',
+      group: 'reglages',
       fields: {
         name: { type: 'text', label: 'Nom commercial' },
         phone: { type: 'text', label: 'Telephone (format international)', description: '+33608465747' },
@@ -95,6 +96,7 @@ const cmsConfig: CmsConfig = {
       label: "Section Hero (banniere d'accueil)",
       description: "Titre H1, sous-titre et boutons d'appel a l'action",
       path: 'src/content/hero/index.json',
+      group: 'accueil',
       fields: {
         title: { type: 'text', label: 'Titre principal (H1)' },
         subtitle: { type: 'text', label: 'Sous-titre', multiline: true },
@@ -111,6 +113,7 @@ const cmsConfig: CmsConfig = {
       label: 'Section A Propos',
       description: 'Texte de presentation, photo et chiffres cles',
       path: 'src/content/about/index.json',
+      group: 'a-propos',
       fields: {
         title: { type: 'text', label: 'Titre de la section' },
         content: { type: 'text', label: 'Texte principal', multiline: true },
@@ -137,6 +140,7 @@ const cmsConfig: CmsConfig = {
       label: 'Section Contact',
       description: 'Titre, sous-titre et mention RGPD du formulaire',
       path: 'src/content/contact/index.json',
+      group: 'contact',
       fields: {
         title: { type: 'text', label: 'Titre de la section' },
         subtitle: { type: 'text', label: 'Sous-titre' },
@@ -150,6 +154,7 @@ const cmsConfig: CmsConfig = {
       label: 'SEO / Referencement',
       description: 'Nom du site et image de partage reseaux sociaux',
       path: 'src/content/seo/index.json',
+      group: 'reglages',
       fields: {
         global: {
           type: 'object',
