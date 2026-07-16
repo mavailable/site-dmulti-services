@@ -47,6 +47,10 @@ const cmsConfig: CmsConfig = {
   modules: [],
 
   site: {
+    // Webmaster (agence) — valeurs explicites (les composants /admin n'ont plus de
+    // defaut code en dur). helpUrl par defaut du parc agence.
+    webmasterName: 'Marc',
+    helpUrl: 'https://marcm.fr/aide/web3forms/',
     ownerName: 'David Merly',
     phone: '+33608465747',
     phoneDisplay: '06 08 46 57 47',
