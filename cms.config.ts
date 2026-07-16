@@ -62,6 +62,7 @@ const cmsConfig: CmsConfig = {
     calUrl: 'https://cal.com/david-merly-p1fdkh/30min',
     umamiSiteId: '85ed707d-25f4-4f58-86bd-fdd101388fae',
     umamiShareUrl: 'https://cloud.umami.is/share/9qI3AFgfu0eXeNGp/dmultiservices.fr',
+    umamiProxyUrl: 'https://umami-proxy.marc-f10.workers.dev',
     contactMarc: {
       phone: '06 88 76 66 48',
       whatsapp: '33688766648',
