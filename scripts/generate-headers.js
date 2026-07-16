@@ -33,8 +33,11 @@ function extractInlineScriptHashes(htmlFiles) {
     const content = readFileSync(file, 'utf-8');
     let match;
     while ((match = scriptRegex.exec(content)) !== null) {
-      const scriptContent = match[1].trim();
-      if (!scriptContent) continue;
+      // Hash the EXACT inline content (border whitespace included) — this is what
+      // the browser hashes for CSP. Trimming here would desync the hash from the
+      // served script and silently block it (cf. marcm generate-csp.mjs 210036b).
+      const scriptContent = match[1];
+      if (!scriptContent.trim()) continue; // trim ONLY for the emptiness test
       const hash = createHash('sha256').update(scriptContent, 'utf-8').digest('base64');
       hashes.add(`'sha256-${hash}'`);
     }
