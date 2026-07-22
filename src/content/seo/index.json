@@ -1,39 +1,39 @@
 {
   "global": {
-    "siteName": "DMulti Services",
-    "separator": "\u2014",
+    "siteName": "",
+    "separator": "",
     "defaultOgImage": "/images/og-image.jpg"
   },
   "pages": {
     "/": {
-      "title": "Artisan multi-services Hautes-Pyrenees (65) et Gers (32)",
-      "description": "Artisan multi-services a Laslades (65). Menuiserie, cuisine, terrasses bois, sols, peinture. 30 ans d'experience. Devis gratuit. Tel. 06 08 46 57 47.",
+      "title": "DMulti Services — Artisan Hautes-Pyrénées (65) et Gers (32)",
+      "description": "Artisan multi-services à Laslades (65). Menuiserie, cuisine, terrasses bois, sols, peinture. 30 ans d'expérience. Devis gratuit. Tél. 06 08 46 57 47.",
       "ogImage": "",
       "noindex": false
+    },
+    "/404": {
+      "title": "Page introuvable — DMulti Services",
+      "description": "La page demandée n'existe pas. Retournez à l'accueil pour trouver ce que vous cherchez.",
+      "ogImage": "",
+      "noindex": true
     },
     "/mentions-legales": {
-      "title": "Mentions legales",
-      "description": "Mentions legales du site DMulti Services.",
-      "ogImage": "",
-      "noindex": false
-    },
-    "/politique-de-confidentialite": {
-      "title": "Politique de confidentialite",
-      "description": "Politique de confidentialite du site DMulti Services.",
+      "title": "Mentions légales — DMulti Services",
+      "description": "Mentions légales de DMulti Services, artisan multi-services à Laslades (65350). Éditeur, hébergeur, assurances, propriété intellectuelle et données personnelles.",
       "ogImage": "",
       "noindex": false
     },
     "/merci": {
-      "title": "Message envoye",
-      "description": "Votre message a bien ete envoye. David vous repondra rapidement.",
+      "title": "Merci pour votre message — DMulti Services",
+      "description": "David a bien reçu votre demande et vous recontactera dans les plus brefs délais.",
       "ogImage": "",
       "noindex": true
     },
-    "/404": {
-      "title": "Page introuvable",
-      "description": "La page que vous cherchez n'existe pas ou a ete deplacee.",
+    "/politique-de-confidentialite": {
+      "title": "Politique de confidentialité — DMulti Services",
+      "description": "Politique de confidentialité de DMulti Services : données collectées, finalités, durée de conservation, vos droits RGPD et sécurité. Aucun cookie déposé.",
       "ogImage": "",
-      "noindex": true
+      "noindex": false
     }
   }
 }
