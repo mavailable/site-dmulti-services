@@ -80,7 +80,14 @@ const cmsConfig: CmsConfig = {
         name: { type: 'text', label: 'Nom commercial' },
         phone: { type: 'text', label: 'Telephone (format international)', description: '+33608465747' },
         phoneFormatted: { type: 'text', label: 'Telephone (format affiche)', description: '06 08 46 57 47' },
-        whatsapp: { type: 'select', label: 'Disponible sur WhatsApp', options: [{ label: 'Oui', value: 'true' }, { label: 'Non', value: 'false' }], defaultValue: 'true' },
+        // Case a cocher, PAS un select 'true'/'false' : un select ecrit une
+        // CHAINE, or content.config.ts attend z.boolean() -> la premiere
+        // sauvegarde client cassait `astro build` et gelait toutes les mises en
+        // ligne du site. Et meme sans ca, la chaine "false" est truthy en JS :
+        // les composants (WhatsAppButton, Contact, Footer) testent
+        // `siteInfo.whatsapp &&`, donc « Non » aurait quand meme affiche le
+        // bouton WhatsApp. Detecte par le gate doctor cms.config/content.config.
+        whatsapp: { type: 'boolean', label: 'Disponible sur WhatsApp', defaultValue: true },
         email: { type: 'text', label: 'Email de contact' },
         address: { type: 'text', label: 'Adresse (rue)' },
         city: { type: 'text', label: 'Ville' },
