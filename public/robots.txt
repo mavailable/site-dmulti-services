@@ -1,72 +1,122 @@
+# ==============================================================
+# BLOC D'EXCLUSIONS DU SITE — a repeter VERBATIM dans CHAQUE groupe
+# ci-dessous. RFC 9309 : un groupe nomme n'herite RIEN du groupe *.
+# ==============================================================
+
 User-agent: *
-Allow: /
 Disallow: /api/
 Disallow: /merci
+Allow: /
 
 # OpenAI
 User-agent: GPTBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: OAI-SearchBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: ChatGPT-User
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Anthropic
 User-agent: ClaudeBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Claude-SearchBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Claude-User
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Perplexity
 User-agent: PerplexityBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Perplexity-User
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Google
 User-agent: GoogleOther
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Google-Extended
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Apple
 User-agent: Applebot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Applebot-Extended
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Meta
 User-agent: Meta-ExternalAgent
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Meta-ExternalFetcher
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Autres assistants grand public
 User-agent: DuckAssistBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: MistralAI-User
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 User-agent: Amazonbot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Corpus d'entrainement
 User-agent: CCBot
+Disallow: /api/
+Disallow: /merci
 Allow: /
 
 # Marche tourisme / Asie
 User-agent: Bytespider
+Disallow: /api/
+Disallow: /merci
 Allow: /
+
+# ==============================================================
+# FIN DES GROUPES. Toute nouvelle exclusion de chemin se pose dans
+# le groupe * ET dans CHACUN des groupes ci-dessus. Ne JAMAIS coller
+# un Disallow ici : il se rattacherait silencieusement au dernier
+# groupe nomme (Bytespider) et ne s'appliquerait qu'a lui.
+# ==============================================================
 
 Sitemap: https://dmultiservices.fr/sitemap-index.xml
