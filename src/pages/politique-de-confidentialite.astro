@@ -12,14 +12,14 @@ const year = new Date().getFullYear();
 // Schema.org Breadcrumb centralise — doctrine C1
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: domain.url },
-  { name: 'Politique de confidentialité', url: '/politique-de-confidentialite' },
+  { name: 'Politique de confidentialité', url: '/politique-de-confidentialite/' },
 ]);
 ---
 
 <BaseLayout
   title="Politique de confidentialité — DMulti Services"
   description="Politique de confidentialité de DMulti Services : données collectées, finalités, durée de conservation, vos droits RGPD et sécurité. Aucun cookie déposé."
-  canonicalUrl="https://dmultiservices.fr/politique-de-confidentialite"
+  canonicalUrl="https://dmultiservices.fr/politique-de-confidentialite/"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

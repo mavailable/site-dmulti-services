@@ -24,7 +24,7 @@ const web3formsKey = cmsKey || fallbackKey;
 >
   <!-- Web3Forms config -->
   <input type="hidden" name="access_key" value={web3formsKey} />
-  <input type="hidden" name="redirect" value="https://dmultiservices.fr/merci" />
+  <input type="hidden" name="redirect" value="https://dmultiservices.fr/merci/" />
   <input type="hidden" name="from_name" value="DMulti Services" />
   <input type="hidden" name="subject" value="Nouveau devis depuis dmultiservices.fr" />
   <input type="hidden" name="replyto" value="$email" />
@@ -118,7 +118,7 @@ const web3formsKey = cmsKey || fallbackKey;
   <!-- Mention RGPD -->
   <p class="text-neutral-700 text-xs leading-relaxed">
     {contact.rgpdText}{' '}
-    <a href="/politique-de-confidentialite" class="underline hover:text-neutral-600 transition-colors">
+    <a href="/politique-de-confidentialite/" class="underline hover:text-neutral-600 transition-colors">
       Politique de confidentialité
     </a>.
   </p>

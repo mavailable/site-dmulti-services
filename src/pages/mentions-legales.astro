@@ -12,14 +12,14 @@ const year = new Date().getFullYear();
 // Schema.org Breadcrumb centralise — doctrine C1
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: domain.url },
-  { name: 'Mentions légales', url: '/mentions-legales' },
+  { name: 'Mentions légales', url: '/mentions-legales/' },
 ]);
 ---
 
 <BaseLayout
   title="Mentions légales — DMulti Services"
   description="Mentions légales de DMulti Services, artisan multi-services à Laslades (65350). Éditeur, hébergeur, assurances, propriété intellectuelle et données personnelles."
-  canonicalUrl="https://dmultiservices.fr/mentions-legales"
+  canonicalUrl="https://dmultiservices.fr/mentions-legales/"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -170,7 +170,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
             <p>
               Pour toute information sur la collecte et le traitement des données personnelles, veuillez consulter
               notre{' '}
-              <a href="/politique-de-confidentialite" class="text-primary-700 font-medium hover:underline">
+              <a href="/politique-de-confidentialite/" class="text-primary-700 font-medium hover:underline">
                 Politique de confidentialité
               </a>.
             </p>
