@@ -177,7 +177,7 @@ const web3formsKey = cmsKey || fallbackKey;
           (window as any).umami.track('form-submit', { page: window.location.pathname });
         }
         // Redirect vers /merci
-        window.location.href = '/merci';
+        window.location.href = '/merci/';
       } else {
         throw new Error(json.message ?? 'Erreur lors de l\'envoi.');
       }
