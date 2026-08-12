@@ -4,110 +4,130 @@
 # ==============================================================
 
 User-agent: *
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # OpenAI
 User-agent: GPTBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: OAI-SearchBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: ChatGPT-User
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Anthropic
 User-agent: ClaudeBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Claude-SearchBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Claude-User
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Perplexity
 User-agent: PerplexityBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Perplexity-User
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Google
 User-agent: GoogleOther
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Google-Extended
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Apple
 User-agent: Applebot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Applebot-Extended
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Meta
 User-agent: Meta-ExternalAgent
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Meta-ExternalFetcher
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Autres assistants grand public
 User-agent: DuckAssistBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: MistralAI-User
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 User-agent: Amazonbot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Corpus d'entrainement
 User-agent: CCBot
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
 
 # Marche tourisme / Asie
 User-agent: Bytespider
+Disallow: /admin/
 Disallow: /api/
 Disallow: /merci
 Allow: /
