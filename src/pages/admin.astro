@@ -5,6 +5,10 @@
 import '@marc/cms-engine/cms.css';
 import AdminIsland from '../components/AdminIsland';
 import cmsConfig from '../../cms.config';
+// cms-engine-scaffold (v0.87.0) : le HTML de /admin est servi SANS mot de passe. Il ne porte que
+// la charge utile de connexion ; la config complete arrive apres connexion (/api/cms/admin-config).
+import { loginConfig } from '@marc/cms-engine/config';
+const adminBootConfig = loginConfig(cmsConfig);
 
 const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
 const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
@@ -29,9 +33,9 @@ const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
     </style>
   </head>
   <body>
-    <script define:vars={{ cfg: cmsConfig }} is:inline>
+    <script define:vars={{ cfg: adminBootConfig }} is:inline>
       window.__cmsConfig = cfg;
     </script>
-    <AdminIsland config={cmsConfig} client:only="react" />
+    <AdminIsland config={adminBootConfig} client:only="react" />
   </body>
 </html>
