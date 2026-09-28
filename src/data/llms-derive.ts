@@ -8,9 +8,9 @@
 // Aucune valeur du contenu ne doit etre recopiee dans ce fichier.
 
 import seo from '../content/seo/index.json';
-import { domain } from './business';
+// URL canonique du site : astro.config.mjs -> site (import.meta.env.SITE).
 
-const SITE = domain.url.replace(/\/$/, '');
+const SITE = String(import.meta.env.SITE).replace(/\/$/, '');
 
 /** URL canonique : slash final (trailingSlash 'always'), jamais une URL qui redirige. */
 export function url(path: string): string {
@@ -19,13 +19,23 @@ export function url(path: string): string {
   return `${SITE}/${clean ? `${clean}/` : ''}${hash ? `#${hash}` : ''}`;
 }
 
-/** Texte brut sur une ligne : HTML retire, pas de tiret cadratin. */
+const ENTITES: Record<string, string> = {
+  nbsp: ' ', amp: '&', quot: '"', apos: "'", laquo: '«', raquo: '»', rsquo: '’', lsquo: '‘',
+  ldquo: '“', rdquo: '”', hellip: '…', ndash: '–', mdash: '—', eacute: 'é', egrave: 'è', agrave: 'à',
+};
+
+/** Texte brut : HTML retire (blocs = saut de paragraphe), entites decodees, pas de tiret cadratin. */
 export function plain(s: string | undefined): string {
   return (s ?? '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
+    .replace(/<\/(p|div|li|h[1-6]|blockquote|ul|ol)>|<br\s*\/?>/gi, '\n\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&([a-z]+);/gi, (m, e) => ENTITES[e.toLowerCase()] ?? m)
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/(\d{4})\s*—\s*/g, '$1 - ')
     .replace(/\s*—\s*/g, ', ')
-    .replace(/[ \t]+/g, ' ')
+    .replace(/[ \t\u00a0]+/g, ' ')
+    .replace(/ *\n */g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
 
@@ -42,11 +52,21 @@ function label(title: string): string {
 
 const EXCLUS = /^\/(404|merci|admin|aide|depot|private)(\/|$)/;
 
-/** Pages publiques du site : registre SEO (src/content/seo), hors noindex et exclusions. */
-export function pagesPrincipales(): string {
+/**
+ * Pages publiques du site : registre SEO (src/content/seo), hors noindex et exclusions.
+ * `prefix` restreint a une langue (ex. '/fr'), `home` libelle la racine de ce prefixe.
+ */
+export function pagesPrincipales(opts: { prefix?: string; home?: string } = {}): string {
+  const prefix = (opts.prefix ?? '').replace(/\/+$/, '');
+  const home = opts.home ?? 'Accueil';
   const pages = (seo as { pages: Record<string, { title: string; description: string; noindex?: boolean }> }).pages;
+  const norm = (p: string) => `/${p.replace(/^\/+|\/+$/g, '')}`.replace(/\/$/, '') || '/';
   return Object.entries(pages)
-    .filter(([path, p]) => !p.noindex && !EXCLUS.test(path))
-    .map(([path, p]) => `- [${path === '/' ? 'Accueil' : plain(label(p.title))}](${url(path)}): ${oneLine(p.description)}`)
+    .filter(([path, p]) => !p.noindex && !EXCLUS.test(norm(path).replace(/^\/[a-z]{2}(?=\/|$)/, '')) && norm(path) !== '/404')
+    .filter(([path]) => !prefix || norm(path) === prefix || norm(path).startsWith(`${prefix}/`))
+    .map(([path, p]) => {
+      const root = norm(path) === (prefix || '/');
+      return `- [${root ? home : plain(label(p.title))}](${url(path)}): ${oneLine(p.description)}`;
+    })
     .join('\n');
 }
